@@ -36,3 +36,4 @@ Shifts for *PHP* include:
 - [PSR-2 - adopt the PSR-2 code style](https://laravelshift.com/upgrade-psr2-code-style-standard)
 - [PSR-4 - upgrade from PSR-0 to PSR-4](https://laravelshift.com/upgrade-namespace-psr0-psr4)
 - [Mysqli Shift - covert mysql to mysqli](https://laravelshift.com/upgrade-mysql-mysqli)
+# laravel-5-app
