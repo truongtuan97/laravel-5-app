@@ -1,35 +1,73 @@
-FROM php:7.2-fpm
+FROM php:7.1-apache
 
-# Copy composer.lock and composer.json
-COPY composer.lock composer.json /var/www/
+# Get repository and install wget and vim
+RUN apt-get update && apt-get install --no-install-recommends -y \
+        wget \
+        gnupg \
+        git \
+        unzip
 
-# Set working directory
-WORKDIR /var/www
+# Install PHP extensions deps
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libmcrypt-dev \
+        zlib1g-dev \
+        libicu-dev \
+        g++ \
+        unixodbc-dev \
+        libxml2-dev \
+        libaio-dev \
+        libmemcached-dev \
+        freetds-dev \
+        libssl-dev \
+        openssl
 
-# Install dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    locales \
-    zip \
-    jpegoptim optipng pngquant gifsicle \
-    vim \
-    unzip \
-    git \
-    curl
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- \
+        --install-dir=/usr/local/bin \
+        --filename=composer
 
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+# Install PHP extensions
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-configure pdo_dblib --with-libdir=/lib/x86_64-linux-gnu \
+    && pecl install sqlsrv-4.1.6.1 \
+    && pecl install pdo_sqlsrv-4.1.6.1 \
+    && pecl install redis \
+    && pecl install memcached \
+    && pecl install xdebug \
+    && docker-php-ext-install \
+            iconv \
+            mbstring \
+            intl \
+            mcrypt \
+            gd \
+            mysqli \
+            pdo_mysql \
+            pdo_dblib \
+            soap \
+            sockets \
+            zip \
+            pcntl \
+            ftp \
+    && docker-php-ext-enable \
+            sqlsrv \
+            pdo_sqlsrv \
+            redis \
+            memcached \
+            opcache \
+            xdebug
 
-# Install extensions
-RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
-RUN docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/
-RUN docker-php-ext-install gd
+# Install APCu and APC backward compatibility
+RUN pecl install apcu \
+    && pecl install apcu_bc-1.0.3 \
+    && docker-php-ext-enable apcu --ini-name 10-docker-php-ext-apcu.ini \
+    && docker-php-ext-enable apc --ini-name 20-docker-php-ext-apc.ini
 
-# Install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# Clean repository
+RUN apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Add user for laravel application
 RUN groupadd -g 1000 www
