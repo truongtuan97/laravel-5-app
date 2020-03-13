@@ -1,11 +1,18 @@
-FROM php:7.1-apache
+FROM php:7.1-fpm
+
+# Copy composer.lock and composer.json
+COPY composer.lock composer.json /var/www/
+
+# Set working directory
+WORKDIR /var/www
 
 # Get repository and install wget and vim
 RUN apt-get update && apt-get install --no-install-recommends -y \
         wget \
         gnupg \
         git \
-        unzip
+        unzip \
+        locales
 
 # Install PHP extensions deps
 RUN apt-get update \

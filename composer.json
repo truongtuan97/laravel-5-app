@@ -58,5 +58,6 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
-    }
+    },
+    "symfony/translation-contracts": "^1.1.6"
 }
