@@ -85,10 +85,11 @@ return [
             'port' => env('DB_PORT', '1433'),
             'database' => env('DB_DATABASE', 'Account'),
             'username' => env('DB_USERNAME', 'sa'),
-            'password' => env('DB_PASSWORD', ''),
+            'password' => env('DB_PASSWORD', 'Passw0rd@123'),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
+            'schema'   => 'trunglt',
         ],
 
     ],
