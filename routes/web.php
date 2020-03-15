@@ -15,12 +15,20 @@
 //     return view('welcome');
 // });
 
+//Admin session
+route::get('/admin', 'AdminController@getLogin')->name('admin');
+route::post('/admin', 'AdminController@postLogin');
+
+Route::group(['middleware' => ['admin']], function () {
+  Route::get('show_user',  ['as' => 'management.user.show', 'uses' => 'ManagementController@userDetail']);
+  Route::get('list_users', ['as' => 'users', 'uses' => 'ManagementController@listUser']);
+});
+//End admin session
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('users/{user}/show',  ['as' => 'users.show', 'uses' => 'CustomerUserController@show']);
-Route::get('users', ['as' => 'users', 'uses' => 'CustomerUserController@index']);
 Route::get('users/{user}',  ['as' => 'users.edit', 'uses' => 'CustomerUserController@edit']);
 Route::patch('users/{user}/update',  ['as' => 'users.update', 'uses' => 'CustomerUserController@update']);
 

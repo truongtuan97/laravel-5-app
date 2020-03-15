@@ -20,16 +20,11 @@ class CustomerUserController extends Controller
         $this->middleware('auth');
     }
 
-    public function index() {
-        $users = CustomerUser::all();
-        return view('users.list', compact('users'));
-    }
-
     public function show() {
         $user = Auth::user();
         return view('users.show', compact('user'));
     }
-
+    
     public function edit(CustomerUser $user) {
         $user = Auth::user();
         return view('users.edit', compact('user'));

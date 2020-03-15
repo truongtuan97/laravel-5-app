@@ -168,11 +168,13 @@
     <!-- END: Footer-->
         
     <!-- BEGIN: Vendor JS-->
+    <script src="{{ asset('js/app-assets/vendors/tables/jquery-1.12.3.js') }}"></script>
     <script src="{{ asset('js/app-assets/vendors/vendors.min.js') }}"></script>
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->    
     <script src="{{ asset('js/app-assets/vendors/prism.min.js') }}"></script>
+    <script src="{{ asset('js/app-assets/vendors/tables/datatable/datatables.min.js') }}"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->    

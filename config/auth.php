@@ -15,8 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'customers',
-        // 'passwords' => 'users',
+        'passwords' => 'users',
     ],
 
     /*
@@ -44,7 +43,7 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'customers',
-        ],
+        ],        
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -78,7 +77,7 @@ return [
         'customers' => [
             'driver' => 'eloquent',
             'model' => App\CustomerUser::class,
-        ],
+        ],        
     ],
 
     /*
@@ -106,7 +105,7 @@ return [
             'provider' => 'customers',
             'table' => 'password_resets',
             'expire' => 60,
-        ],
+        ],        
     ],
 
 ];

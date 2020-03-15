@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
-use App\CustomerUser;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+
+use App\CustomerUser;
+use App\AccountInfo;
+
 
 class LoginController extends Controller
 {
@@ -62,7 +65,11 @@ class LoginController extends Controller
     }
 
     public function logout(Request $request)
-    {
+    {        
+        $accountInfo = $this->getAccountInfo(auth()->user()->username, auth()->user()->email);
+        $accountInfo->dLogoutDate = Carbon::Now();
+        $accountInfo->save();
+
         $this->performLogout($request);
         return redirect('/home');
     }
@@ -72,7 +79,22 @@ class LoginController extends Controller
         $user = CustomerUser::where('username', $request->email)
                     ->where('password',md5($request->password))
                     ->first();                  
-        Auth::login($user);
-        return redirect('/users/'.$user->id.'/show');
+        if ($user) {
+            
+            $accountInfo = $this->getAccountInfo($user->username, $user->email);
+            $accountInfo->dLoginDate = Carbon::Now();
+            $accountInfo->save();
+
+            Auth::login($user);
+            return redirect('/users/'.$user->id.'/show');
+        }
+        return redirect('/home');
+    }
+
+    private function getAccountInfo($cAccName, $email) 
+    {
+        return AccountInfo::where('cAccName', $cAccName)
+                    ->where('email', $email)
+                    ->first();
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -13,9 +13,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <div class="alert alert-danger">
-                        {{\Session::get('error')}}
-                    </div>                    
+
+                    You are logged in!
                 </div>
             </div>
         </div>
