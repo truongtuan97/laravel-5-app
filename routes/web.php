@@ -19,8 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::get('users/{user}',  ['as' => 'users.edit', 'uses' => 'UserController@edit']);
-// Route::patch('users/{user}/update',  ['as' => 'users.update', 'uses' => 'UserController@update']);
+Route::get('users', ['as' => 'users', 'uses' => 'CustomerUserController@index']);
 Route::get('users/{user}',  ['as' => 'users.edit', 'uses' => 'CustomerUserController@edit']);
 Route::patch('users/{user}/update',  ['as' => 'users.update', 'uses' => 'CustomerUserController@update']);
 
@@ -36,3 +35,6 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+Route::get('promotion/{promotion}', ['as' => 'promotion.edit', 'uses' => 'PromotionConfigurationController@edit']);
+Route::patch('promotion/{promotion}/update', ['as' => 'promotion.update', 'uses' => 'PromotionConfigurationController@update']);

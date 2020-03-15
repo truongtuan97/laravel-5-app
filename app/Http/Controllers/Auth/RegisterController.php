@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\CustomerUser;
 use App\AccountInfo;
+use App\AccountHabitus;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -61,13 +63,41 @@ class RegisterController extends Controller
         $customerUser = CustomerUser::create([
             'username' => $data['username'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => md5($data['password']),
             'phone' => $data['phone']
         ]);
         AccountInfo::create([
-            'customer_id' => $customerUser->id,
-            'plain_password' => $data['password']
+            'cAccName' => $customerUser->username,
+            'cSecPassWord' => strtoupper(md5($data['password'])),
+            'cPassWord' => strtoupper(md5($data['password'])),
+            'iClientID' => 0,
+            'dLoginDate' => Carbon::Now(),
+            'dLogoutDate' => Carbon::Now(),
+            'nExtPoint' => 1,
+            'nExtPoint1' => 0,
+            'nExtPoint2' => 0,
+            'nExtPoint3' => 0,
+            'nExtPoint4' => 0,
+            'nExtPoint5' => 0,
+            'nExtPoint6' => 0,
+            'nExtPoint7' => 0,
+            'nUserIP' => 1,
+            'nUserIPPort' => 1,
+            'nFeeType' => 1,
+            'bParentalControl' => 0,
+            'bIsBanned' => 0,
+            'bIsUseOTP' => 0,
+            'iOTPSessionLifeTime' => 1,
+            'iServiceFlag' => 0,
+            'plainpassword' => md5($data['password']),
+            'email' => $customerUser->email,
+            'phone' => $customerUser->phone        
+        ]);
+        AccountHabitus::create([
+            'cAccName' => $customerUser->username,
+            'iLeftSecond' => '999999999',
+            'dEndDate' => new Carbon('2050-12-31')
         ]);
         return $customerUser;
-    }
+    }    
 }
