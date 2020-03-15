@@ -25,11 +25,16 @@ class CustomerUserController extends Controller
         return view('users.list', compact('users'));
     }
 
+    public function show() {
+        $user = Auth::user();
+        return view('users.show', compact('user'));
+    }
+
     public function edit(CustomerUser $user) {
         $user = Auth::user();
         return view('users.edit', compact('user'));
     }
-
+    
     public function update(CustomerUser $user) {
         $this->validate(request(), [
             'email' => 'required|max:255|email|unique:users,email,'.$user->id,

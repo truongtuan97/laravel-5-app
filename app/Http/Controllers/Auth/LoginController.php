@@ -73,6 +73,6 @@ class LoginController extends Controller
                     ->where('password',md5($request->password))
                     ->first();                  
         Auth::login($user);
-        return redirect('/home');
+        return redirect('/home', compact('user'));
     }
 }

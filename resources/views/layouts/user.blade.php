@@ -129,21 +129,6 @@
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class=" navigation-header"><span>General</span><i class=" feather icon-minus" data-toggle="tooltip" data-placement="right" data-original-title="General"></i>
                     </li>
-                                 
-                    <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Users">Users</span></a>
-                        <ul class="menu-content">
-                            <li><a class="menu-item" href="page-users-list.html" data-i18n="Users List">Users List</a>
-                            </li>
-                            <!-- <li><a class="menu-item" href="page-users-view.html" data-i18n="Users View">Users View</a>
-                            </li>
-                            <li><a class="menu-item" href="page-users-edit.html" data-i18n="Users Edit">Users Edit</a>
-                            </li>
-                            <li><a class="menu-item" href="user-profile.html" data-i18n="Users Profile">Users Profile</a>
-                            </li>
-                            <li><a class="menu-item" href="user-cards.html" data-i18n="Users Cards">Users Cards</a>
-                            </li> -->
-                        </ul>
-                    </li>                                                        
                 </ul>
             </div>
         </div>
