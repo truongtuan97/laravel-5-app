@@ -68,6 +68,12 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="phone" class="col-md-4 col-form-label text-md-right"></label>
+                            <div class="col-md-6">
+                                <a href="{{ route('users.edit', Auth::user()->id) }}" class="btn btn-block btn-primary glow">Thay Đổi Thông Tin</a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

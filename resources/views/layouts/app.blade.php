@@ -29,20 +29,22 @@
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 
     <!-- BEGIN: Vendor CSS-->    
-    <link href="{{ asset('css/app-assets/vendors/vendors.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app-assets/vendors/ui/prism.min.css') }}" rel="stylesheet">    
+    <link href="{{ asset('app-assets/vendors/css/vendors.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('app-assets/vendors/css/ui/prism.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('app-assets/vendors/css/tables/datatable/datatables.min.css') }}" rel="stylesheet">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->    
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap-extended.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/colors.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/components.css') }}" rel="stylesheet">    
+    <link href="{{ asset('app-assets/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('app-assets/css/bootstrap-extended.css') }}" rel="stylesheet">
+    <link href="{{ asset('app-assets/css/colors.css') }}" rel="stylesheet">
+    <link href="{{ asset('app-assets/css/components.css') }}" rel="stylesheet">        
     <!-- END: Theme CSS-->
 
     <!-- BEGIN: Page CSS-->    
-    <link href="{{ asset('css/vertical-menu.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/palette-gradient.css') }}" rel="stylesheet">    
+    <link href="{{ asset('app-assets/css/core/menu/menu-types/vertical-menu.css') }}" rel="stylesheet">
+    <link href="{{ asset('app-assets/css/core/colors/palette-gradient.css') }}" rel="stylesheet">
+    <link href="{{ asset('app-assets/css/pages/page-users.css') }}" rel="stylesheet">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->    
@@ -75,7 +77,7 @@
                 <div class="navbar-header">
                     <ul class="nav navbar-nav flex-row">
                         <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="feather icon-menu font-large-1"></i></a></li>
-                        <li class="nav-item"><a class="navbar-brand" href="https://vltk.com.vn"><img class="brand-logo" alt="stack admin logo" src="{{ asset('images/logo/stack-logo.png') }}">
+                        <li class="nav-item"><a class="navbar-brand" href="https://vltk.com.vn"><img class="brand-logo" alt="stack admin logo" src="{{ asset('app-assets/images/logo/stack-logo.png') }}">
                                 <h2 class="brand-text">vltk.com.vn</h2>
                             </a></li>
                         <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
@@ -98,7 +100,7 @@
                             <li class="dropdown dropdown-user nav-item">
                                 <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="{{ asset('images/portrait/small/avatar-s-1.png') }}" alt="avatar"><i></i>
+                                        <img src="{{ asset('app-assets/images/portrait/small/avatar-s-1.png') }}" alt="avatar"><i></i>
                                     </div>
                                     <span class="user-name">{{ Auth::user()->username }}</span>
                                 </a>
@@ -166,20 +168,20 @@
         </p>
     </footer>
     <!-- END: Footer-->
-        
-    <!-- BEGIN: Vendor JS-->
-    <script src="{{ asset('js/app-assets/vendors/tables/jquery-1.12.3.js') }}"></script>
-    <script src="{{ asset('js/app-assets/vendors/vendors.min.js') }}"></script>
+            
+    <!-- BEGIN: Vendor JS-->    
+    <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}"></script>        
     <!-- BEGIN Vendor JS-->
 
-    <!-- BEGIN: Page Vendor JS-->    
-    <script src="{{ asset('js/app-assets/vendors/prism.min.js') }}"></script>
-    <script src="{{ asset('js/app-assets/vendors/tables/datatable/datatables.min.js') }}"></script>
+    <!-- BEGIN: Page Vendor JS-->        
+    <script src="{{ asset('app-assets/vendors/js/ui/prism.min.js') }}"></script>
+    <script src="{{ asset('app-assets/vendors/js/tables/datatable/datatables.min.js') }}"></script>    
+    <script src="{{ asset('app-assets/js/scripts/pages/page-users.js') }}"></script>        
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->    
-    <script src="{{ asset('js/app-assets/vendors/app-menu.js') }}"></script>
-    <script src="{{ asset('js/app-assets/vendors/app.js') }}"></script>    
+    <script src="{{ asset('app-assets/js/core/app-menu.js') }}"></script>
+    <script src="{{ asset('app-assets/js/core/app.js') }}"></script>    
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->

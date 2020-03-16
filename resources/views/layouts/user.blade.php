@@ -29,20 +29,21 @@
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 
     <!-- BEGIN: Vendor CSS-->    
-    <link href="{{ asset('css/app-assets/vendors/vendors.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app-assets/vendors/ui/prism.min.css') }}" rel="stylesheet">    
+    <link href="{{ asset('app-assets/vendors/css/vendors.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('app-assets/vendors/css/ui/prism.min.css') }}" rel="stylesheet">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->    
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap-extended.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/colors.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/components.css') }}" rel="stylesheet">    
+    <link href="{{ asset('app-assets/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('app-assets/css/bootstrap-extended.css') }}" rel="stylesheet">
+    <link href="{{ asset('app-assets/css/colors.css') }}" rel="stylesheet">
+    <link href="{{ asset('app-assets/css/components.css') }}" rel="stylesheet">        
     <!-- END: Theme CSS-->
 
     <!-- BEGIN: Page CSS-->    
-    <link href="{{ asset('css/vertical-menu.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/palette-gradient.css') }}" rel="stylesheet">    
+    <link href="{{ asset('app-assets/css/core/menu/menu-types/vertical-menu.css') }}" rel="stylesheet">
+    <link href="{{ asset('app-assets/css/core/colors/palette-gradient.css') }}" rel="stylesheet">
+    <link href="{{ asset('app-assets/css/pages/page-users.css') }}" rel="stylesheet">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->    
@@ -160,17 +161,19 @@
     </footer>
     <!-- END: Footer-->
         
-    <!-- BEGIN: Vendor JS-->
-    <script src="{{ asset('js/app-assets/vendors/vendors.min.js') }}"></script>
+    <!-- BEGIN: Vendor JS-->    
+    <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}"></script>        
     <!-- BEGIN Vendor JS-->
 
-    <!-- BEGIN: Page Vendor JS-->    
-    <script src="{{ asset('js/app-assets/vendors/prism.min.js') }}"></script>
+    <!-- BEGIN: Page Vendor JS-->        
+    <script src="{{ asset('app-assets/vendors/js/ui/prism.min.js') }}"></script>
+    <script src="{{ asset('app-assets/vendors/js/tables/datatable/datatables.min.js') }}"></script>    
+    <script src="{{ asset('app-assets/js/scripts/pages/page-users.js') }}"></script>        
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->    
-    <script src="{{ asset('js/app-assets/vendors/app-menu.js') }}"></script>
-    <script src="{{ asset('js/app-assets/vendors/app.js') }}"></script>    
+    <script src="{{ asset('app-assets/js/core/app-menu.js') }}"></script>
+    <script src="{{ asset('app-assets/js/core/app.js') }}"></script>    
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->

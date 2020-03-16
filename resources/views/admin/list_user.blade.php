@@ -3,7 +3,7 @@
 @section('content')
 <!-- BEGIN: Content-->
 <!-- users list start -->
-<section class="users-list-wrapper">    
+<section class="users-list-wrapper">
     <div class="users-list-table">
         <div class="card">
             <div class="card-content">
