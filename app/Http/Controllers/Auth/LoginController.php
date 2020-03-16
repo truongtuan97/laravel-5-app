@@ -66,10 +66,12 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {        
-        $accountInfo = $this->getAccountInfo(auth()->user()->username, auth()->user()->email);
-        $accountInfo->dLogoutDate = Carbon::Now();
-        $accountInfo->save();
-
+        if (auth()->user() && auth()->user()->role != 'admin') {
+            $accountInfo = $this->getAccountInfo(auth()->user()->username, auth()->user()->email);
+            $accountInfo->dLogoutDate = Carbon::Now();
+            $accountInfo->save();
+        }
+        
         $this->performLogout($request);
         return redirect('/home');
     }

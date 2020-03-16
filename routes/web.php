@@ -14,6 +14,7 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::get('/', 'HomeController@index')->name('/');
 
 //Admin session
 route::get('/admin', 'AdminController@getLogin')->name('admin');
