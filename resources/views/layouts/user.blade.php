@@ -76,7 +76,7 @@
                 <div class="navbar-header">
                     <ul class="nav navbar-nav flex-row">
                         <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="feather icon-menu font-large-1"></i></a></li>
-                        <li class="nav-item"><a class="navbar-brand" href="https://vltk.com.vn"><img class="brand-logo" alt="stack admin logo" src="{{ asset('images/logo/stack-logo.png') }}">
+                        <li class="nav-item"><a class="navbar-brand" href="https://vltk.com.vn"><img class="brand-logo" alt="stack admin logo" src="{{ asset('app-assets/images/logo/stack-logo.png') }}">
                                 <h2 class="brand-text">vltk.com.vn</h2>
                             </a></li>
                         <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
@@ -99,7 +99,7 @@
                             <li class="dropdown dropdown-user nav-item">
                                 <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="{{ asset('images/portrait/small/avatar-s-1.png') }}" alt="avatar"><i></i>
+                                        <img src="{{ asset('app-assets/images/portrait/small/avatar-s-1.png') }}" alt="avatar"><i></i>
                                     </div>
                                     <span class="user-name">{{ Auth::user()->username }}</span>
                                 </a>
