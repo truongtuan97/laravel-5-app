@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\CustomerUser;
+use App\AccountInfo;
 use Carbon\Carbon;
 
 class CustomerUserController extends Controller
@@ -22,7 +23,10 @@ class CustomerUserController extends Controller
 
     public function show() {
         $user = Auth::user();
-        return view('users.show', compact('user'));
+        $accountInfo = AccountInfo::where('cAccName', $user->username)
+            ->where('email', $user->email)
+            ->first();
+        return view('users.show', compact('accountInfo'));
     }
     
     public function edit(CustomerUser $user) {

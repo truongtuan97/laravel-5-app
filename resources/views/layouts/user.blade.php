@@ -11,7 +11,7 @@
     <meta name="description" content="Stack admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, stack admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Light Layout - Stack Responsive Bootstrap 4 Admin Template</title>
+    <title>Quản lý tài khoản</title>
     <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
@@ -75,8 +75,8 @@
                 <div class="navbar-header">
                     <ul class="nav navbar-nav flex-row">
                         <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="feather icon-menu font-large-1"></i></a></li>
-                        <li class="nav-item"><a class="navbar-brand" href="../../../html/ltr/vertical-menu-template-light/index.html"><img class="brand-logo" alt="stack admin logo" src="{{ asset('images/logo/stack-logo.png') }}">
-                                <h2 class="brand-text">Stack</h2>
+                        <li class="nav-item"><a class="navbar-brand" href="https://vltk.com.vn"><img class="brand-logo" alt="stack admin logo" src="{{ asset('images/logo/stack-logo.png') }}">
+                                <h2 class="brand-text">vltk.com.vn</h2>
                             </a></li>
                         <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
                     </ul>
