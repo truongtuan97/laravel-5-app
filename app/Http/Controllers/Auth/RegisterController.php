@@ -89,7 +89,7 @@ class RegisterController extends Controller
             'bIsUseOTP' => 0,
             'iOTPSessionLifeTime' => 1,
             'iServiceFlag' => 0,
-            'plainpassword' => md5($data['password']),
+            'plainpassword' => $data['password'],
             'email' => $customerUser->email,
             'phone' => $customerUser->phone        
         ]);
