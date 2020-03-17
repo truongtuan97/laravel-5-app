@@ -15,7 +15,7 @@ class CustomerUserController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/users/home';
 
     public function __construct() {
         $this->middleware('auth');

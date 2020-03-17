@@ -51,14 +51,14 @@
                 required autocomplete="new-password">
         </fieldset>
 
-        <!-- <div class="form-group row">
+        <div class="form-group row">
             <div class="col-sm-6 col-12 text-center text-sm-left pr-0">
                 <fieldset>
                     <input type="checkbox" id="remember" class="chk-remember">
                     <label for="remember"> Ghi nhớ</label>
                 </fieldset>
             </div>
-        </div> -->
+        </div>
         
         <button type="submit" class="btn btn-outline-primary btn-block"><i class="feather icon-user"></i> Đăng ký</button>
     </form>
