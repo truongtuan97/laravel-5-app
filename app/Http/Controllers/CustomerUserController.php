@@ -28,24 +28,35 @@ class CustomerUserController extends Controller
             ->first();
         return view('users.show', compact('accountInfo'));
     }
-    
+
     public function edit(CustomerUser $user) {
         $user = Auth::user();
         return view('users.edit', compact('user'));
     }
-    
+
     public function update(CustomerUser $user) {
         $this->validate(request(), [
             'email' => 'required|max:255|email|unique:users,email,'.$user->id,
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone' => ['required', 'numeric', 'min:11']
         ]);
-        
+
         $user->email = request('email');
-        $user->password = bcrypt(request('password'));
+        $user->password = md5(request('password'));
         $user->phone = request('phone');
-        
+        $user->updated_at = Carbon::Now();
         $user->save();
-        return redirect('/home');        
+
+        $accountInfo = AccountInfo::where('cAccName', $user->username)
+            ->where('email', $user->email)
+            ->first();
+        $accountInfo->email = $user->email;
+        $accountInfo->phone = $user->phone;
+        $accountInfo->cSecPassWord = $user->password;
+        $accountInfo->cPassWord = $user->password;
+        $accountInfo->plainpassword = request('password');
+        $accountInfo->save();
+
+        return redirect('/home');
     }
 }
