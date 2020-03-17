@@ -90,7 +90,7 @@ class LoginController extends Controller
             Auth::login($user);
             return redirect('/users/'.$user->id.'/show');
         }
-        return redirect('/home');
+        return redirect('/user/home');
     }
 
     private function getAccountInfo($cAccName, $email) 

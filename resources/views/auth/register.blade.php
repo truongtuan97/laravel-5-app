@@ -10,7 +10,7 @@
                 name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
             @error('username')
                 <span class="invalid-feedback" role="alert">
-                    <strong>Nhập tài khoản</strong>
+                    <strong>Nhập tài khoản {{ $message }}</strong>
                 </span>
             @enderror
         </fieldset>
@@ -20,7 +20,7 @@
                 value="{{ old('email') }}" required autocomplete="email">
             @error('email')
                 <span class="invalid-feedback" role="alert">
-                    <strong>Vui lòng nhập email</strong>
+                    <strong>Vui lòng nhập email {{ $message }}</strong>
                 </span>
             @enderror
         </fieldset>
@@ -51,14 +51,14 @@
                 required autocomplete="new-password">
         </fieldset>
 
-        <div class="form-group row">
+        <!-- <div class="form-group row">
             <div class="col-sm-6 col-12 text-center text-sm-left pr-0">
                 <fieldset>
-                    <input type="checkbox" id="remember-me" class="chk-remember">
-                    <label for="remember-me"> Ghi nhớ</label>
+                    <input type="checkbox" id="remember" class="chk-remember">
+                    <label for="remember"> Ghi nhớ</label>
                 </fieldset>
             </div>
-        </div>
+        </div> -->
         
         <button type="submit" class="btn btn-outline-primary btn-block"><i class="feather icon-user"></i> Đăng ký</button>
     </form>

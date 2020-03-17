@@ -97,7 +97,7 @@ class RegisterController extends Controller
             'cAccName' => $customerUser->username,
             'iLeftSecond' => '999999999',
             'dEndDate' => new Carbon('2050-12-31')
-        ]);        
-        return redirect('/users/'.$customerUser->id.'/show');
+        ]);
+        return $customerUser;        
     }    
 }

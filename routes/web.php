@@ -28,7 +28,7 @@ Route::group(['middleware' => ['admin']], function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/users/home', 'HomeController@index')->name('/users/home');
 Route::get('users/{user}/show',  ['as' => 'users.show', 'uses' => 'CustomerUserController@show']);
 Route::get('users/{user}',  ['as' => 'users.edit', 'uses' => 'CustomerUserController@edit']);
 Route::patch('users/{user}/update',  ['as' => 'users.update', 'uses' => 'CustomerUserController@update']);
