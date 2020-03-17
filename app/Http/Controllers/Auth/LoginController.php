@@ -35,7 +35,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/users/home';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -73,7 +73,7 @@ class LoginController extends Controller
         }
         
         $this->performLogout($request);
-        return redirect('/users/home');
+        return redirect('/home');
     }
 
     public function login(Request $request)
@@ -88,9 +88,9 @@ class LoginController extends Controller
             $accountInfo->save();
 
             Auth::login($user);
-            return redirect('/users/home');
+            return redirect('/home');
         }
-        return redirect('/users/home');
+        return redirect('/home');
     }
 
     private function getAccountInfo($cAccName, $email) 

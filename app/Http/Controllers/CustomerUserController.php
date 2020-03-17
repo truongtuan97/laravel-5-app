@@ -15,7 +15,7 @@ class CustomerUserController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/users/home';
+    protected $redirectTo = '/home';
 
     public function __construct() {
         $this->middleware('auth');
@@ -37,12 +37,15 @@ class CustomerUserController extends Controller
     public function update(CustomerUser $user) {
         $this->validate(request(), [
             'email' => 'required|max:255|email|unique:users,email,'.$user->id,
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            // 'password' => ['reuired', 'string', 'min:8', 'confirmed'],
+            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
             'phone' => ['required', 'numeric', 'min:11']
         ]);
 
         $user->email = request('email');
-        $user->password = md5(request('password'));
+        if (request('password')) {
+            $user->password = md5(request('password'));
+        }
         $user->phone = request('phone');
         $user->updated_at = Carbon::Now();
         $user->save();
@@ -52,9 +55,11 @@ class CustomerUserController extends Controller
             ->first();
         $accountInfo->email = $user->email;
         $accountInfo->phone = $user->phone;
-        $accountInfo->cSecPassWord = $user->password;
-        $accountInfo->cPassWord = $user->password;
-        $accountInfo->plainpassword = request('password');
+        if (request('password')) {
+            $accountInfo->cSecPassWord = $user->password;
+            $accountInfo->cPassWord = $user->password;
+            $accountInfo->plainpassword = request('password');
+        }        
         $accountInfo->save();
 
         return redirect('/home');
