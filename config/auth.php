@@ -36,14 +36,10 @@ return [
     */
 
     'guards' => [
-        // 'web' => [
-        //     'driver' => 'session',
-        //     'provider' => 'users',
-        // ],
         'web' => [
             'driver' => 'session',
-            'provider' => 'customers',
-        ],        
+            'provider' => 'users',
+        ],
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -69,15 +65,10 @@ return [
     */
 
     'providers' => [
-        // 'users' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\User::class,
-        // ],
-
-        'customers' => [
+        'users' => [
             'driver' => 'eloquent',
-            'model' => App\CustomerUser::class,
-        ],        
+            'model' => App\AccountInfo::class,
+        ],
     ],
 
     /*
@@ -102,10 +93,10 @@ return [
         //     'expire' => 60,
         // ],
         'customers' => [
-            'provider' => 'customers',
+            'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
-        ],        
+        ],
     ],
 
 ];

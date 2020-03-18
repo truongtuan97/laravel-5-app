@@ -9,7 +9,6 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-use App\CustomerUser;
 use App\AccountInfo;
 
 
@@ -65,38 +64,27 @@ class LoginController extends Controller
     }
 
     public function logout(Request $request)
-    {        
-        if (auth()->user() && auth()->user()->role != 'admin') {
-            $accountInfo = $this->getAccountInfo(auth()->user()->username, auth()->user()->email);
-            $accountInfo->dLogoutDate = Carbon::Now();
-            $accountInfo->save();
-        }
-        
+    {
+        auth()->user()->dLogoutDate = Carbon::Now();
+        auth()->user()->save();
+
         $this->performLogout($request);
         return redirect('/home');
     }
 
     public function login(Request $request)
-    {        
-        $user = CustomerUser::where('username', $request->email)
-                    ->where('password',md5($request->password))
-                    ->first();                  
+    {
+        $user = AccountInfo::where('cAccName', $request->email)
+                    ->where('cSecPassWord', strtoupper(md5($request->password)))
+                    ->first();
+
         if ($user) {
-            
-            $accountInfo = $this->getAccountInfo($user->username, $user->email);
-            $accountInfo->dLoginDate = Carbon::Now();
-            $accountInfo->save();
+            $user->dLoginDate = Carbon::Now();
+            $user->save();
 
             Auth::login($user);
             return redirect('/home');
         }
         return redirect('/home');
-    }
-
-    private function getAccountInfo($cAccName, $email) 
-    {
-        return AccountInfo::where('cAccName', $cAccName)
-                    ->where('email', $email)
-                    ->first();
     }
 }

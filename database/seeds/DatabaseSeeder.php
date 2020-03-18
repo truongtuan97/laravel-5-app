@@ -13,27 +13,30 @@ class DatabaseSeeder extends Seeder
     {
         $data = [
             [
-                'username' => 'admin',
+                'cAccName' => 'admin',
                 'phone' => '999999999',
                 'email' => 'lxc150896@gmail.com',
-                'password' => md5('12345'),
+                'cSecPassWord' => md5('12345'),
+                'cPassWord' => md5('12345'),
                 'role' => 'admin'
             ],
             [
-                'username' => 'admin1',
+                'cAccName' => 'admin1',
                 'phone' => '999999999',
                 'email' => 'lxc@gmail.com',
-                'password' => md5('12345'),
+                'cSecPassWord' => md5('12345'),
+                'cPassWord' => md5('12345'),
                 'role' => 'admin'
             ],
             [
-                'username' => 'admin2',
+                'cAccName' => 'admin2',
                 'phone' => '999999999',
                 'email' => 'admin@gmail.com',
-                'password' => md5('12345'),
+                'cSecPassWord' => md5('12345'),
+                'cPassWord' => md5('12345'),
                 'role' => 'admin'
             ],
         ];
-        DB::table('customers')->insert($data);
+        DB::table('account_info')->insert($data);
     }
 }

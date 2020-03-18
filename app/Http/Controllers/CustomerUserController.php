@@ -23,18 +23,15 @@ class CustomerUserController extends Controller
 
     public function show() {
         $user = Auth::user();
-        $accountInfo = AccountInfo::where('cAccName', $user->username)
-            ->where('email', $user->email)
-            ->first();
-        return view('users.show', compact('accountInfo'));
+        return view('users.show', compact('user'));
     }
 
-    public function edit(CustomerUser $user) {
+    public function edit(AccountInfo $user) {
         $user = Auth::user();
         return view('users.edit', compact('user'));
     }
 
-    public function update(CustomerUser $user) {
+    public function update(AccountInfo $user) {
         $this->validate(request(), [
             'email' => 'required|max:255|email|unique:users,email,'.$user->id,
             // 'password' => ['reuired', 'string', 'min:8', 'confirmed'],
@@ -44,22 +41,12 @@ class CustomerUserController extends Controller
 
         $user->email = request('email');
         if (request('password')) {
-            $user->password = md5(request('password'));
+            $user->cSecPassWord = strtoupper(md5(request('password')));
+            $user->cPassWord = strtoupper(md5(request('password')));
+            $user->plainpassword = request('password');
         }
         $user->phone = request('phone');
         $user->save();
-
-        $accountInfo = AccountInfo::where('cAccName', $user->username)
-            ->where('email', $user->email)
-            ->first();
-        $accountInfo->email = $user->email;
-        $accountInfo->phone = $user->phone;
-        if (request('password')) {
-            $accountInfo->cSecPassWord = $user->password;
-            $accountInfo->cPassWord = $user->password;
-            $accountInfo->plainpassword = request('password');
-        }
-        $accountInfo->save();
 
         return redirect('/home');
     }

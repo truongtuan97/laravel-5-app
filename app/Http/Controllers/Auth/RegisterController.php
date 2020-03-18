@@ -59,15 +59,9 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {        
-        $customerUser = CustomerUser::create([
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => md5($data['password']),
-            'phone' => $data['phone']
-        ]);
-        AccountInfo::create([
-            'cAccName' => $customerUser->username,
+    {
+        $user = AccountInfo::create([
+            'cAccName' => $data['username'],
             'cSecPassWord' => strtoupper(md5($data['password'])),
             'cPassWord' => strtoupper(md5($data['password'])),
             'iClientID' => 0,
@@ -90,14 +84,14 @@ class RegisterController extends Controller
             'iOTPSessionLifeTime' => 1,
             'iServiceFlag' => 0,
             'plainpassword' => $data['password'],
-            'email' => $customerUser->email,
-            'phone' => $customerUser->phone        
+            'email' => $data['email'],
+            'phone' => $data['phone']
         ]);
         AccountHabitus::create([
-            'cAccName' => $customerUser->username,
+            'cAccName' => $data['username'],
             'iLeftSecond' => '999999999',
             'dEndDate' => new Carbon('2050-12-31')
         ]);
-        return $customerUser;        
-    }    
+        return $user;
+    }
 }
