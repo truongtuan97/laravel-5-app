@@ -19,7 +19,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>    
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -28,26 +28,26 @@
     <!-- Styles -->
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 
-    <!-- BEGIN: Vendor CSS-->    
+    <!-- BEGIN: Vendor CSS-->
     <link href="{{ asset('app-assets/vendors/css/vendors.min.css') }}" rel="stylesheet">
     <link href="{{ asset('app-assets/vendors/css/ui/prism.min.css') }}" rel="stylesheet">
     <link href="{{ asset('app-assets/vendors/css/tables/datatable/datatables.min.css') }}" rel="stylesheet">
     <!-- END: Vendor CSS-->
 
-    <!-- BEGIN: Theme CSS-->    
+    <!-- BEGIN: Theme CSS-->
     <link href="{{ asset('app-assets/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('app-assets/css/bootstrap-extended.css') }}" rel="stylesheet">
     <link href="{{ asset('app-assets/css/colors.css') }}" rel="stylesheet">
-    <link href="{{ asset('app-assets/css/components.css') }}" rel="stylesheet">        
+    <link href="{{ asset('app-assets/css/components.css') }}" rel="stylesheet">
     <!-- END: Theme CSS-->
 
-    <!-- BEGIN: Page CSS-->    
+    <!-- BEGIN: Page CSS-->
     <link href="{{ asset('app-assets/css/core/menu/menu-types/vertical-menu.css') }}" rel="stylesheet">
     <link href="{{ asset('app-assets/css/core/colors/palette-gradient.css') }}" rel="stylesheet">
     <link href="{{ asset('app-assets/css/pages/page-users.css') }}" rel="stylesheet">
     <!-- END: Page CSS-->
 
-    <!-- BEGIN: Custom CSS-->    
+    <!-- BEGIN: Custom CSS-->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <!-- END: Custom CSS-->
 
@@ -58,12 +58,12 @@
 
 <body class="vertical-layout vertical-menu 2-columns   fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="2-columns">
 
-    
+
     @guest
         <!-- BEGIN: Content-->
         <div class="app-content content">
             <div class="content-overlay"></div>
-            <div class="content-wrapper">            
+            <div class="content-wrapper">
                 <div class="content-body">
                     @yield('content')
                 </div>
@@ -86,7 +86,7 @@
                 <div class="navbar-container content">
                     <div class="collapse navbar-collapse" id="navbar-mobile">
                         <ul class="nav navbar-nav mr-auto float-left">
-                            <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="feather icon-menu"></i></a></li>                            
+                            <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="feather icon-menu"></i></a></li>
                             <li class="nav-item d-none d-md-block"><a class="nav-link nav-link-expand" href="#"><i class="ficon feather icon-maximize"></i></a></li>
                             <li class="nav-item nav-search"><a class="nav-link nav-link-search" href="#"><i class="ficon feather icon-search"></i></a>
                                 <div class="search-input">
@@ -96,22 +96,22 @@
                                 </div>
                             </li>
                         </ul>
-                        <ul class="nav navbar-nav float-right">                            
+                        <ul class="nav navbar-nav float-right">
                             <li class="dropdown dropdown-user nav-item">
                                 <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                                     <div class="avatar avatar-online">
                                         <img src="{{ asset('app-assets/images/portrait/small/avatar-s-1.png') }}" alt="avatar"><i></i>
                                     </div>
-                                    <span class="user-name">{{ Auth::user()->username }}</span>
+                                    <span class="user-name">{{ Auth::user()->cAccName }}</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}">
                                         <i class="feather icon-user"></i> Edit Profile
-                                    </a>                                
+                                    </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
-                                        <i class="feather icon-power"></i>                                    
+                                        <i class="feather icon-power"></i>
                                         {{ __('Logout') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -131,13 +131,13 @@
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class=" navigation-header"><span>General</span><i class=" feather icon-minus" data-toggle="tooltip" data-placement="right" data-original-title="General"></i>
                     </li>
-                                 
+
                     <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Users">Users</span></a>
                         <ul class="menu-content">
                             <li><a class="menu-item" href="{{ route('users') }}" data-i18n="Users List">Users List</a>
-                            </li>                            
+                            </li>
                         </ul>
-                    </li>                                                        
+                    </li>
                 </ul>
             </div>
         </div>
@@ -146,42 +146,42 @@
         <!-- BEGIN: Content-->
         <div class="app-content content">
             <div class="content-overlay"></div>
-            <div class="content-wrapper">            
+            <div class="content-wrapper">
                 <div class="content-body">
                     @yield('content')
                 </div>
             </div>
         </div>
         <!-- END: Content-->
-    @endguest    
-        
+    @endguest
+
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light navbar-border">
         <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
-            <span class="float-md-left d-block d-md-inline-block">Copyright &copy; 2020 
+            <span class="float-md-left d-block d-md-inline-block">Copyright &copy; 2020
                 <a class="text-bold-800 grey darken-2" href="https://1.envato.market/pixinvent_portfolio" target="_blank">PIXINVENT </a>
             </span>
             <span class="float-md-right d-none d-lg-block">Hand-crafted & Made with <i class="feather icon-heart pink"></i></span>
         </p>
     </footer>
     <!-- END: Footer-->
-            
-    <!-- BEGIN: Vendor JS-->    
-    <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}"></script>        
+
+    <!-- BEGIN: Vendor JS-->
+    <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}"></script>
     <!-- BEGIN Vendor JS-->
 
-    <!-- BEGIN: Page Vendor JS-->        
+    <!-- BEGIN: Page Vendor JS-->
     <script src="{{ asset('app-assets/vendors/js/ui/prism.min.js') }}"></script>
-    <script src="{{ asset('app-assets/vendors/js/tables/datatable/datatables.min.js') }}"></script>    
-    <script src="{{ asset('app-assets/js/scripts/pages/page-users.js') }}"></script>        
+    <script src="{{ asset('app-assets/vendors/js/tables/datatable/datatables.min.js') }}"></script>
+    <script src="{{ asset('app-assets/js/scripts/pages/page-users.js') }}"></script>
     <!-- END: Page Vendor JS-->
 
-    <!-- BEGIN: Theme JS-->    
+    <!-- BEGIN: Theme JS-->
     <script src="{{ asset('app-assets/js/core/app-menu.js') }}"></script>
-    <script src="{{ asset('app-assets/js/core/app.js') }}"></script>    
+    <script src="{{ asset('app-assets/js/core/app.js') }}"></script>
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->

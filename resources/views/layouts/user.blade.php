@@ -101,7 +101,7 @@
                                     <div class="avatar avatar-online">
                                         <img src="{{ asset('app-assets/images/portrait/small/avatar-s-1.png') }}" alt="avatar"><i></i>
                                     </div>
-                                    <span class="user-name">{{ Auth::user()->username }}</span>
+                                    <span class="user-name">{{ Auth::user()->cAccName }}</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}">
