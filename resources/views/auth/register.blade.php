@@ -10,7 +10,7 @@
                 name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
             @error('username')
                 <span class="invalid-feedback" role="alert">
-                    <strong>Nhập tài khoản {{ $message }}</strong>
+                    <strong>{{ $message }}</strong>
                 </span>
             @enderror
         </fieldset>
@@ -20,7 +20,7 @@
                 value="{{ old('email') }}" required autocomplete="email">
             @error('email')
                 <span class="invalid-feedback" role="alert">
-                    <strong>Vui lòng nhập email {{ $message }}</strong>
+                    <strong>{{ $message }}</strong>
                 </span>
             @enderror
         </fieldset>
