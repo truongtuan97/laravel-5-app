@@ -47,7 +47,6 @@ class CustomerUserController extends Controller
             $user->password = md5(request('password'));
         }
         $user->phone = request('phone');
-        $user->updated_at = Carbon::Now();
         $user->save();
 
         $accountInfo = AccountInfo::where('cAccName', $user->username)
@@ -59,7 +58,7 @@ class CustomerUserController extends Controller
             $accountInfo->cSecPassWord = $user->password;
             $accountInfo->cPassWord = $user->password;
             $accountInfo->plainpassword = request('password');
-        }        
+        }
         $accountInfo->save();
 
         return redirect('/home');
