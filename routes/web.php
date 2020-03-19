@@ -21,8 +21,12 @@ route::get('/admin', 'AdminController@getLogin')->name('admin');
 route::post('/admin', 'AdminController@postLogin');
 
 Route::group(['middleware' => ['admin']], function () {
-  Route::get('show_user',  ['as' => 'management.user.show', 'uses' => 'ManagementController@userDetail']);
+  Route::get('admin/users/{user}/show',  ['as' => 'management.user.show', 'uses' => 'ManagementController@userDetail']);
+  Route::get('admin/users/{user}/edit',  ['as' => 'management.user.edit', 'uses' => 'ManagementController@userEdit']);
+  Route::patch('admin/users/{user}/update',  ['as' => 'management.user.update', 'uses' => 'ManagementController@userUpdate']);
   Route::get('list_users', ['as' => 'users', 'uses' => 'ManagementController@listUser']);
+  Route::get('admin/chkm', ['as' => 'management.chkm.show', 'uses' => 'ManagementController@chkmShow']);
+  Route::patch('admin/chkm/update', ['as' => 'management.chkm.update', 'uses' => 'ManagementController@chkmUpdate']);
 });
 //End admin session
 

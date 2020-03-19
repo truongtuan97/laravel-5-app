@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class PromotionConfigurationController extends Controller
 {
-    **
+    /**
      * Create a new controller instance.
      *
      * @return void

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -38,5 +39,14 @@ class DatabaseSeeder extends Seeder
             ],
         ];
         DB::table('account_info')->insert($data);
+
+        $chkm = [
+            [
+                'ngay_bat_dau' => Carbon::Now(),
+                'ngay_ket_thuc' => Carbon::Now(),
+                'khuyenmai' => 0
+            ]
+        ]
+        DB::table('promotion_configurations')->insert($data);
     }
 }
