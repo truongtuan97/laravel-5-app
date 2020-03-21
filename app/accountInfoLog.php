@@ -1,14 +1,12 @@
 <?php
 
 namespace App;
-use Illuminate\Notifications\Notifiable;
+
 use Illuminate\Database\Eloquent\Model;
 
-class PromotionConfiguration extends Model
+class AccountInfoLog extends Model
 {
-    use Notifiable;
-
-    protected $table = 'promotion_configurations';
+    protected $table = 'account_info_logs';
     protected $dateFormat = 'Y-m-d H:i:s';
     public $timestamps = false;
     /**
@@ -17,6 +15,6 @@ class PromotionConfiguration extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'ngay_bat_dau','ngay_ket_thuc','khuyenmai'
+        'adminAccount', 'userAccount', 'dateUpdate'
     ];
 }

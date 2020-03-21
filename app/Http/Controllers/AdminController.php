@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\AccountInfo;
 use Carbon\Carbon;
+use App\PromotionConfiguration;
 
 class AdminController extends Controller
 {
@@ -28,10 +29,12 @@ class AdminController extends Controller
         //kiểm tra trường remember có được chọn hay không
         $user = AccountInfo::where('email', $request->email)
                     ->where('cSecPassWord', md5($request->password))
-                    ->first();
+                    ->first();                
         if ($user && $user->role == "admin") {
+            $chkm = PromotionConfiguration::all()->take(1);
+
             Auth::login($user);
-            return view('admin.home');
+            return redirect('list_users');            
         }        
         return redirect('/admin');
     }
