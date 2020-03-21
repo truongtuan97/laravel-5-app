@@ -13,12 +13,10 @@
                         class="users-avatar-shadow rounded-circle" height="64" width="64">
                 </a>
                 <div class="media-body pt-25">
-                    <h4 class="media-heading">
-                        <span class="users-view-name">{{ $user->cAccName }}</span>
-                        <span class="text-muted font-medium-1"></span>
-                        <span class="users-view-username text-muted font-medium-1 "></span></h4>
-                    <span>ID:</span>
-                    <span class="users-view-id">{{ $user->id }}</span>
+                    <h4 class="media-heading">                        
+                        {{ $user->cAccName }}
+                        </h4>
+                    <span>ID:</span>{{ $user->id }}
                 </div>
             </div>
         </div>

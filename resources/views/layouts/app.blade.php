@@ -121,7 +121,7 @@
                                 <span class="user-name">{{ Auth::user()->cAccName }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}">
+                                <a class="dropdown-item" href="{{ route('management.user.edit', Auth::user()->id) }}">
                                     <i class="feather icon-user"></i> Edit Profile
                                 </a>
                                 <div class="dropdown-divider"></div>

@@ -33,7 +33,7 @@ class ManagementController extends Controller
     }
 
     public function userEdit($id) {
-        $user = AccountInfo::where('id', $id)->first();
+        $user = AccountInfo::where('id', $id)->first();        
         return view('admin.user.edit', compact('user'));
     }
 
