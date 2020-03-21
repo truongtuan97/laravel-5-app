@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\AccountInfo;
 use App\PromotionConfiguration;
 use App\CardChargeInfoLog;
+use App\AccountInfoLog;
 
 class ManagementController extends Controller
 {
@@ -38,7 +39,30 @@ class ManagementController extends Controller
     }
 
     public function userUpdate(AccountInfo $user) {
-        dd($user);
+        $this->validate(request(), [
+            'email' => 'required|max:255|email|unique:users,email,'.$user->id,            
+            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
+            'phone' => ['nullable', 'numeric', 'min:11']
+        ]);
+        
+        $admin = auth()->user();
+
+        $user->email = request('email');
+        if (request('password')) {
+            $user->password = request('password');
+        }
+        if (request('phone')) {
+            $user->phone = request('phone');
+        }        
+        $user->save();
+
+        $accInfoLog = new AccountInfoLog();
+        $accInfoLog->adminAccount = $admin->cAccName;
+        $accInfoLog->userAccount = $user->cAccName;
+        $accInfoLog->dateUpdate = Carbon::Now();
+        $accInfoLog->save();
+
+        return redirect('list_users');
     }
 
     public function chkmList() {
@@ -47,9 +71,7 @@ class ManagementController extends Controller
     }
 
     public function chkmEdit($id) {
-        $chkm = PromotionConfiguration::where('id', $id)->first();
-        // $str = substr($chkm->ngay_bat_dau, 0, strlen($chkm->ngay_bat_dau) - 3);
-        // dd(Carbon::parse($str)->format('m/d/Y'));
+        $chkm = PromotionConfiguration::where('id', $id)->first();        
         return view('admin.chkm.edit', compact('chkm'));
     }
 

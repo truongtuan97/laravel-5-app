@@ -59,15 +59,15 @@
                                 </tr>
                                 <tr>
                                     <td>Is Banned:</td>
-                                    <td class="users-view-role">{{ $user->bIsBanned }}</td>
+                                    <td class="users-view-latest-activity">{{ $user->bIsBanned }}</td>
                                 </tr>
                                 <tr>
                                     <td>Email:</td>
-                                    <td><span class="badge badge-success users-view-status">{{ $user->email }}</span></td>
+                                    <td><span class="users-view-latest-activity">{{ $user->email }}</span></td>
                                 </tr>
                                 <tr>
                                     <td>Phone:</td>
-                                    <td><span class="badge badge-success users-view-status">{{ $user->phone }}</span></td>
+                                    <td><span class="users-view-latest-activity">{{ $user->phone }}</span></td>
                                 </tr>
                             </tbody>
                         </table>
