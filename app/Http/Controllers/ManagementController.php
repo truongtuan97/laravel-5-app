@@ -49,7 +49,9 @@ class ManagementController extends Controller
 
         $user->email = request('email');
         if (request('password')) {
-            $user->password = request('password');
+            $user->plainpassword = request('password');
+            $user->cSecPassWord = md5(request('password'));
+            $user->cPassWord = md5(request('password'));
         }
         if (request('phone')) {
             $user->phone = request('phone');
