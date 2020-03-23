@@ -34,17 +34,17 @@ class ManagementController extends Controller
     }
 
     public function userEdit($id) {
-        $user = AccountInfo::where('id', $id)->first();        
+        $user = AccountInfo::where('id', $id)->first();
         return view('admin.user.edit', compact('user'));
     }
 
     public function userUpdate(AccountInfo $user) {
         $this->validate(request(), [
-            'email' => 'required|max:255|email|unique:users,email,'.$user->id,            
+            'email' => 'required|max:255|email|unique:users,email,'.$user->id,
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
             'phone' => ['nullable', 'numeric', 'min:11']
         ]);
-        
+
         $admin = auth()->user();
 
         $user->email = request('email');
@@ -55,7 +55,7 @@ class ManagementController extends Controller
         }
         if (request('phone')) {
             $user->phone = request('phone');
-        }        
+        }
         $user->save();
 
         $accInfoLog = new AccountInfoLog();
@@ -73,22 +73,27 @@ class ManagementController extends Controller
     }
 
     public function chkmEdit($id) {
-        $chkm = PromotionConfiguration::where('id', $id)->first();        
+        $chkm = PromotionConfiguration::where('id', $id)->first();
         return view('admin.chkm.edit', compact('chkm'));
     }
 
-    public function chkmUpdate(PromotionConfiguration $chkm) {        
+    public function chkmUpdate(PromotionConfiguration $chkm) {
         $this->validate(request(), [
             'ngay_bat_dau' => ['required', 'date'],
             'ngay_ket_thuc' => ['required', 'date'],
             'khuyenmai' => ['required']
-        ]);        
+        ]);
+        try {
+            $chkm->ngay_bat_dau = request('ngay_bat_dau');
+            $chkm->ngay_ket_thuc = request('ngay_ket_thuc');
+            $chkm->khuyenmai = request('khuyenmai');
+            $chkm->save();
 
-        $chkm->ngay_bat_dau = request('ngay_bat_dau');
-        $chkm->ngay_ket_thuc = request('ngay_ket_thuc');
-        $chkm->khuyenmai = request('khuyenmai');
-        $chkm->save();
-        return redirect('admin/chkms');
+            return redirect()->back()->with('alert', 'success');
+        } catch (Exception $e) {
+            return redirect()->back()->with('alert', 'failed');
+        }
+
     }
 
     public function userNapcardEdit($id) {
@@ -97,38 +102,42 @@ class ManagementController extends Controller
     }
 
     public function userNapcardUpdate(AccountInfo $user) {
-        $admin = auth()->user();
+        try {
+            $admin = auth()->user();
 
-        $chkm = PromotionConfiguration::all()->first();
+            $chkm = PromotionConfiguration::all()->first();
 
-        $cardType = request('cardtype');
-        $value = request('nExtPoint1');
-        
-        if ($cardType == 'zing') {
-            $value = ( $value + ($value*0.0) + ($value* $chkm->khuyenmai) );
-        } else if ($cardType == 'momo') {            
-            $value = ( $value+($value*0.1) + ($value* $chkm->khuyenmai) );            
-        } else {
-            $value = $value + ($value * $chkm->khuyenmai);
+            $cardType = request('cardtype');
+            $value = request('nExtPoint1');
+
+            if ($cardType == 'zing') {
+                $value = ( $value + ($value*0.0) + ($value* $chkm->khuyenmai) );
+            } else if ($cardType == 'momo' || $cardType == 'bank') {
+                $value = ( $value+($value*0.1) + ($value* $chkm->khuyenmai) );
+            } else {
+                $value = $value + ($value * $chkm->khuyenmai);
+            }
+            $user->nExtPoint1 += $value;
+            $user->save();
+
+            $cardChargeLog = new CardChargeInfoLog;
+            $cardChargeLog->adminAccount = $admin->cAccName;
+            $cardChargeLog->userAccount = $user->cAccName;
+            $cardChargeLog->cardType = $cardType;
+            $cardChargeLog->value = request('nExtPoint1');
+            $cardChargeLog->realValue = $value;
+            $cardChargeLog->dateUpdate = Carbon::Now();
+            $cardChargeLog->save();
+
+            return redirect()->back()->with('alert', 'success');
+        } catch (Exception $e) {
+            return redirect()->back()->with('alert', 'failed');
         }
-        $user->nExtPoint1 += $value;
-        $user->save();
-
-        $cardChargeLog = new CardChargeInfoLog;
-        $cardChargeLog->adminAccount = $admin->cAccName;
-        $cardChargeLog->userAccount = $user->cAccName;
-        $cardChargeLog->cardType = $cardType;
-        $cardChargeLog->value = request('nExtPoint1');
-        $cardChargeLog->realValue = $value;
-        $cardChargeLog->dateUpdate = Carbon::Now();
-        $cardChargeLog->save();
-        
-        return redirect('list_users');
     }
 
     public function thongKeNap() {
         $cardChargeLogs = CardChargeInfoLog::whereRaw(
-            "(dateUpdate >= ? AND dateUpdate <= ?)", 
+            "(dateUpdate >= ? AND dateUpdate <= ?)",
             [request('fromDate')." 00:00:00", request('toDate')." 23:59:59"]
           )->orderBy('cardType')->get();
 

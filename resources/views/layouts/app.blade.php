@@ -37,7 +37,7 @@
     <link href="{{ asset('app-assets/vendors/css/ui/prism.min.css') }}" rel="stylesheet">
     <link href="{{ asset('app-assets/vendors/css/tables/datatable/datatables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('app-assets/vendors/css/pickers/pickadate/pickadate.css') }}" rel="stylesheet">
-    <link href="{{ asset('app-assets/vendors/css/forms/toggle/switchery.min.css') }}" rel="stylesheet">    
+    <link href="{{ asset('app-assets/vendors/css/forms/toggle/switchery.min.css') }}" rel="stylesheet">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -199,7 +199,7 @@
     <!-- BEGIN: Vendor JS-->
     <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}"></script>
     <script src="{{ asset('app-assets/vendors/js/pickers/pickadate/picker.js') }}"></script>
-    <script src="{{ asset('app-assets/vendors/js/pickers/pickadate/picker.date.js') }}"></script>    
+    <script src="{{ asset('app-assets/vendors/js/pickers/pickadate/picker.date.js') }}"></script>
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->

@@ -11,14 +11,25 @@
                 <div class="card-header">
                     <h4 class="card-title" id="bordered-layout-basic-form">Nạp Thẻ</h4>
                     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-
                 </div>
+                @if (session('alert'))
+                    @if (session('alert') == 'success')
+                        <div class="alert alert-success mb-2" role="alert">
+                            Update success.
+                        </div>
+                    @endif
+                    @if (session('alert') == 'failed')
+                        <div class="alert alert-danger mb-2" role="alert">
+                            <strong>Oh snap!</strong> Update failed.
+                        </div>
+                    @endif
+                @endif
                 <div class="card-content collpase show">
                     <div class="card-body">
                         <form method="post" action="{{route('management.user.napcard', $user)}}" class="form form-horizontal form-bordered">
                           @csrf
                           {{ method_field('PATCH') }}
-                                                  
+
                             <div class="form-body">
                                 <h4 class="form-section"><i class="feather icon-user"></i> Nạp Thẻ vào tài khoản người
                                     chơi</h4>
@@ -30,11 +41,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 label-control" for="projectinput2">thông tin</label>
+                                    <label class="col-md-3 label-control" for="nExtPoint1">thông tin</label>
                                     <div class="col-md-9">
-                                        <input type="text" id="projectinput2" class="form-control"
-                                            placeholder="hiển thị số tiền (đơn vị là xu) hoặc ko tồn tại, ajax load thông tin từ tài khoản xuống."
-                                            name="info" disabled>
+                                        <input type="text" id="nExtPoint1" class="form-control" value={{ $user->nExtPoint1 }} name="info" disabled>
                                     </div>
                                 </div>
                                 <div class="form-group row">

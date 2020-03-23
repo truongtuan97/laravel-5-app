@@ -23,16 +23,17 @@ route::post('/admin', 'AdminController@postLogin');
 Route::group(['middleware' => ['admin']], function () {
   Route::get('admin/users/{user}/napcard',  ['as' => 'management.user.napcard', 'uses' => 'ManagementController@userNapcardEdit']);
   Route::patch('admin/users/{user}/napcard',  ['as' => 'management.user.napcard', 'uses' => 'ManagementController@userNapcardUpdate']);
-  
+
   Route::get('admin/users/{user}/show',  ['as' => 'management.user.show', 'uses' => 'ManagementController@userDetail']);
   Route::get('admin/users/{user}/edit',  ['as' => 'management.user.edit', 'uses' => 'ManagementController@userEdit']);
   Route::patch('admin/users/{user}/update',  ['as' => 'management.user.update', 'uses' => 'ManagementController@userUpdate']);
   Route::get('list_users', ['as' => 'users', 'uses' => 'ManagementController@listUser']);
-  
+
   Route::get('admin/chkms', ['as' => 'management.chkm.list', 'uses' => 'ManagementController@chkmList']);
   Route::get('admin/chkms/{chkm}/edit', ['as' => 'management.chkm.edit', 'uses' => 'ManagementController@chkmEdit']);
   Route::patch('admin/chkms/{chkm}/update', ['as' => 'management.chkm.update', 'uses' => 'ManagementController@chkmUpdate']);
 
+  Route::get('admin/thongkenap', ['as' => 'management.thongkenap.list', 'uses' => 'ManagementController@thongKeNap']);
   Route::post('admin/thongkenap', ['as' => 'management.thongkenap.list', 'uses' => 'ManagementController@thongKeNap']);
 });
 //End admin session
@@ -47,7 +48,7 @@ Route::patch('users/{user}/update',  ['as' => 'users.update', 'uses' => 'Custome
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-    
+
 // Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');

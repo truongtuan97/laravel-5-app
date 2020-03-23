@@ -12,9 +12,9 @@
                     <div class="table-responsive">
                         <table id="users-list-datatable" class="table">
                             <thead>
-                                <tr>                                
+                                <tr>
                                     <th>id</th>
-                                    <th>cAccname</th>                                    
+                                    <th>cAccname</th>
                                     <th>nExtPoint</th>
                                     <th>nExtPoint1</th>
                                     <th>bIsBanned</th>
@@ -29,17 +29,17 @@
                             @foreach($users as $user)
                                 <tr>
                                     <td>{{$user->id}}</td>
-                                    <td>{{$user->cAccName}}</td>                                    
+                                    <td>{{$user->cAccName}}</td>
                                     <td>{{$user->nExtPoint}}</td>
                                     <td>{{$user->nExtPoint1}}</td>
-                                    <td>{{$user->bIsBanned}}</td>                                    
+                                    <td>{{$user->bIsBanned}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->phone}}</td>
                                     <td><a href="{{ route('management.user.napcard', $user) }}"><i class="feather icon-dollar-sign"></i></a></td>
                                     <td><a href="{{ route('management.user.edit', $user) }}"><i class="feather icon-edit-1"></i></a></td>
                                     <td><a href="{{ route('management.user.show', $user) }}"><i class="feather icon-eye"></i></a></td>
                                 </tr>
-                            @endforeach                                            
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -50,5 +50,6 @@
     </div>
 </section>
 <!-- users list ends -->
+<script src="{{ asset('app-assets/vendors/js/tables/datatable/datatables.min.js') }}"></script>
 <!-- END: Content-->
 @endsection

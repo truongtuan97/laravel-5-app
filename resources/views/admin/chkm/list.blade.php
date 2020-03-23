@@ -12,24 +12,24 @@
                     <div class="table-responsive">
                         <table id="users-list-datatable" class="table">
                             <thead>
-                                <tr>                                
+                                <tr>
                                     <th>id</th>
-                                    <th>Ngày bắt đầu</th>                                    
+                                    <th>Ngày bắt đầu</th>
                                     <th>Ngày kết thúc</th>
                                     <th>Khuyến mãi</th>
-                                    <th>Edit</th>                                    
+                                    <th>Edit</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach($chkms as $chkm)
                                 <tr>
                                     <td>{{$chkm->id}}</td>
-                                    <td>{{$chkm->ngay_bat_dau}}</td>                                    
+                                    <td>{{$chkm->ngay_bat_dau}}</td>
                                     <td>{{$chkm->ngay_ket_thuc}}</td>
-                                    <td>{{$chkm->khuyenmai}}</td>                                    
-                                    <td><a href="{{ route('management.chkm.edit', $chkm) }}"><i class="feather icon-edit-1"></i></a></td>                                    
+                                    <td>{{number_format($chkm->khuyenmai, 2)}}</td>
+                                    <td><a href="{{ route('management.chkm.edit', $chkm) }}"><i class="feather icon-edit-1"></i></a></td>
                                 </tr>
-                            @endforeach                                            
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

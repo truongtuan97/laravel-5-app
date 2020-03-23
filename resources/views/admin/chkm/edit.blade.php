@@ -17,6 +17,18 @@
     <!-- users view media object ends -->
     <!-- users view card data start -->
     <div class="card">
+        @if (session('alert'))
+            @if (session('alert') == 'success')
+                <div class="alert alert-success mb-2" role="alert">
+                    Update success.
+                </div>
+            @endif
+            @if (session('alert') == 'failed')
+                <div class="alert alert-danger mb-2" role="alert">
+                    <strong>Oh snap!</strong> Update failed.
+                </div>
+            @endif
+        @endif
         <div class="card-content">
             <div class="card-body">
                 <form method="post" class="form form-horizontal form-bordered"
@@ -29,7 +41,7 @@
                             <label for="ngay_bat_dau"
                                 class="col-form-label text-md-right">{{ __('Ngày bắt đầu') }}</label>
                             <input id="ngay_bat_dau" type="text" name="ngay_bat_dau"
-                                class="pick-a-date bg-white form-control" value="{{ 
+                                class="pick-a-date bg-white form-control" value="{{
                                     Carbon\Carbon::parse(substr($chkm->ngay_bat_dau, 0, strlen($chkm->ngay_bat_dau) - 3))->format('m/d/Y') }}">
 
                             @error('ngay_bat_dau')
@@ -45,7 +57,7 @@
                             <label for="ngay_ket_thuc"
                                 class="col-form-label text-md-right">{{ __('Ngày kết thúc') }}</label>
                             <input id="ngay_ket_thuc" type="text" name="ngay_ket_thuc"
-                                class="pick-a-date bg-white form-control" value="{{ 
+                                class="pick-a-date bg-white form-control" value="{{
                                     Carbon\Carbon::parse(substr($chkm->ngay_ket_thuc, 0, strlen($chkm->ngay_ket_thuc) - 3))->format('m/d/Y') }}">
 
                             @error('ngay_ket_thuc')
