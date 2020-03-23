@@ -10,6 +10,7 @@ use App\PromotionConfiguration;
 use App\CardChargeInfoLog;
 use App\AccountInfoLog;
 use App\ChargeValue;
+use App\ConfigKhuyenMaiValue;
 
 class ManagementController extends Controller
 {
@@ -75,7 +76,9 @@ class ManagementController extends Controller
 
     public function chkmEdit($id) {
         $chkm = PromotionConfiguration::where('id', $id)->first();
-        return view('admin.chkm.edit', compact('chkm'));
+        $configKhuyenMaiValues = ConfigKhuyenMaiValue::all();
+
+        return view('admin.chkm.edit', compact(['chkm', 'configKhuyenMaiValues']));
     }
 
     public function chkmUpdate(PromotionConfiguration $chkm) {
