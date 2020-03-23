@@ -125,4 +125,13 @@ class ManagementController extends Controller
         
         return redirect('list_users');
     }
+
+    public function thongKeNap() {
+        $cardChargeLogs = CardChargeInfoLog::whereRaw(
+            "(dateUpdate >= ? AND dateUpdate <= ?)", 
+            [request('fromDate')." 00:00:00", request('toDate')." 23:59:59"]
+          )->orderBy('cardType')->get();
+
+        return view('admin.thongkenap', compact('cardChargeLogs'));
+    }
 }
