@@ -63,10 +63,9 @@
                                     <div class="col-md-9">
                                         <select id="nExtPoint1" name="nExtPoint1" class="form-control" value={{ $user->nExtPoint1 }}>
                                             <option value="0" selected="" disabled="">Chọn số tiền</option>
-                                            <option value="100000">100,000</option>
-                                            <option value="200000">200,000</option>
-                                            <option value="500000">500,000</option>
-                                            <option value="1000000">1,000,000</option>
+                                            @foreach($chargeValues as $chargeValue)
+                                            <option value="{{ $chargeValue->value }}">{{ $chargeValue->option }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

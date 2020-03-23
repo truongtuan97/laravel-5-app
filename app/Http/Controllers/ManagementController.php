@@ -9,6 +9,7 @@ use App\AccountInfo;
 use App\PromotionConfiguration;
 use App\CardChargeInfoLog;
 use App\AccountInfoLog;
+use App\ChargeValue;
 
 class ManagementController extends Controller
 {
@@ -98,7 +99,8 @@ class ManagementController extends Controller
 
     public function userNapcardEdit($id) {
         $user = AccountInfo::where('id', $id)->first();
-        return view('admin.user.napcard', compact('user'));
+        $chargeValues = ChargeValue::get();
+        return view('admin.user.napcard', compact(['user', 'chargeValues']));
     }
 
     public function userNapcardUpdate(AccountInfo $user) {
