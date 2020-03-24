@@ -14,6 +14,9 @@ use App\ConfigKhuyenMaiValue;
 
 class ManagementController extends Controller
 {
+    const MOMO = "momo";
+    const ZING = "zing";
+    const BANK = "bank";
     /**
      * Where to redirect users after registration.
      *
@@ -107,13 +110,18 @@ class ManagementController extends Controller
     }
 
     public function userNapcardUpdate(AccountInfo $user) {
+        $this->validate(request(), [
+            'cardType' => ['required', 'string'],
+            'soTien' => ['required', 'numeric']
+        ]);
+
         try {
             $admin = auth()->user();
 
             $chkm = PromotionConfiguration::all()->first();
 
-            $cardType = request('cardtype');
-            $value = request('nExtPoint1');
+            $cardType = request('cardType');
+            $value = request('soTien');
 
             if ($cardType == 'zing') {
                 $value = ( $value + ($value*0.0) + ($value* $chkm->khuyenmai) );
@@ -145,7 +153,21 @@ class ManagementController extends Controller
             "(dateUpdate >= ? AND dateUpdate <= ?)",
             [request('fromDate')." 00:00:00", request('toDate')." 23:59:59"]
           )->orderBy('cardType')->get();
+        $momo = $bank = $zing = 0;
 
-        return view('admin.thongkenap', compact('cardChargeLogs'));
+        foreach ($cardChargeLogs as $cLog) {
+            switch ($cLog->cardType) {
+                case self::MOMO:
+                    $momo += $cLog->value;
+                break;
+                case self::ZING:
+                    $zing += $cLog->value;
+                break;
+                case self::BANK:
+                    $bank += $cLog->value;
+                break;
+            }
+        }
+        return view('admin.thongkenap', compact(['cardChargeLogs', 'momo', 'zing', 'bank']));
     }
 }

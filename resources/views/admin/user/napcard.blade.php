@@ -4,7 +4,7 @@
 <!-- BEGIN: Content-->
 
 <!-- Basic form layout section start -->
-<section id="basic-form-layouts">
+<section class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -41,32 +41,43 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 label-control" for="nExtPoint1">thông tin</label>
+                                    <label class="col-md-3 label-control" for="nExtPoint1">Số xu hiện có</label>
                                     <div class="col-md-9">
                                         <input type="text" id="nExtPoint1" class="form-control" value={{ $user->nExtPoint1 }} name="info" disabled>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 label-control" for="cardtype">Thể loại</label>
+                                    <label class="col-md-3 label-control" for="cardType">Thể loại</label>
                                     <div class="col-md-9">
-                                        <select id="cardtype" name="cardtype" class="form-control">
+                                        <select id="cardType" name="cardType" class="form-control">
                                             <option value="none" selected="" disabled="">Chọn thể loại</option>
                                             <option value="zing">Thẻ zing (100%)</option>
                                             <option value="momo">momo (110%)</option>
                                             <option value="bank">chuyển khoản ngân hàng(110%)</option>
                                         </select>
+
+                                        @error('cardType')
+                                            <span class="feedback" style="color: #ff7588;" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-md-3 label-control" for="nExtPoint1">Số tiền</label>
+                                    <label class="col-md-3 label-control" for="soTien">Số tiền</label>
                                     <div class="col-md-9">
-                                        <select id="nExtPoint1" name="nExtPoint1" class="form-control" value={{ $user->nExtPoint1 }}>
+                                        <select id="soTien" name="soTien" class="form-control" value={{ $user->nExtPoint1 }}>
                                             <option value="0" selected="" disabled="">Chọn số tiền</option>
                                             @foreach($chargeValues as $chargeValue)
                                             <option value="{{ $chargeValue->value }}">{{ $chargeValue->option }}</option>
                                             @endforeach
                                         </select>
+                                        @error('soTien')
+                                            <span class="feedback" style="color: #ff7588;" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
