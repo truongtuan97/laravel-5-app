@@ -13,11 +13,12 @@ $(document).ready(function () {
     var usersDataArray = [];
     // datatable initialization
     if ($("#users-list-datatable").length > 0) {
+        console.log('founded');
         usersTable = $("#users-list-datatable").DataTable({
-            'columnDefs': [{
-                "orderable": false,
-                "targets": [7]
-            }]
+            // 'columnDefs': [{
+            //     "orderable": false,
+            //     "targets": [7, 8, 9]
+            // }]
         });
     };
     // on click selected users data from table(page named page-users-list)

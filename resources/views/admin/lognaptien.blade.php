@@ -13,7 +13,7 @@
                         <table id="users-list-datatable" class="table">
                             <thead>
                                 <tr>
-                                    <th>id</th>
+                                    <th>Id</th>
                                     <th>Ngày nạp</th>
                                     <th>Loại thẻ</th>
                                     <th>Giá trị</th>
