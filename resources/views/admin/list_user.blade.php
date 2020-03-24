@@ -50,6 +50,6 @@
     </div>
 </section>
 <!-- users list ends -->
-<script src="{{ asset('app-assets/vendors/js/tables/datatable/datatables.min.js') }}"></script>
+
 <!-- END: Content-->
 @endsection

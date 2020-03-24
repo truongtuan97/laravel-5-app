@@ -163,6 +163,12 @@
                 <li class=" nav-item">
                     <a href="{{ route('management.thongkenap.list') }}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Users">Thống kê nạp</span></a>
                 </li>
+                <li class=" nav-item">
+                    <a href="{{ route('management.lognaptien.list') }}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Users">Log nạp tiển</span></a>
+                </li>
+                <li class=" nav-item">
+                    <a href="{{ route('management.logquanlytaikhoan.list') }}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Users">Log quản lý tài khoản</span></a>
+                </li>
             </ul>
         </div>
     </div>

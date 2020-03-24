@@ -170,4 +170,14 @@ class ManagementController extends Controller
         }
         return view('admin.thongkenap', compact(['cardChargeLogs', 'momo', 'zing', 'bank']));
     }
+
+    public function logNapTien() {
+        $cardChargeLogs = CardChargeInfoLog::all();
+        return view('admin.lognaptien', compact('cardChargeLogs'));
+    }
+
+    public function logQuanLyTaiKhoan() {
+        $accountInfoLogs = AccountInfoLog::all();
+        return view('admin.logquanlytaikhoan', compact('accountInfoLogs'));
+    }
 }
