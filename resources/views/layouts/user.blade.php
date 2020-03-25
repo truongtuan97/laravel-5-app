@@ -16,11 +16,6 @@
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -31,6 +26,9 @@
     <!-- BEGIN: Vendor CSS-->
     <link href="{{ asset('app-assets/vendors/css/vendors.min.css') }}" rel="stylesheet">
     <link href="{{ asset('app-assets/vendors/css/ui/prism.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('app-assets/vendors/css/tables/datatable/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('app-assets/vendors/css/pickers/pickadate/pickadate.css') }}" rel="stylesheet">
+    <link href="{{ asset('app-assets/vendors/css/forms/toggle/switchery.min.css') }}" rel="stylesheet">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -188,6 +186,8 @@
 
     <!-- BEGIN: Vendor JS-->
     <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}"></script>
+    <script src="{{ asset('app-assets/vendors/js/pickers/pickadate/picker.js') }}"></script>
+    <script src="{{ asset('app-assets/vendors/js/pickers/pickadate/picker.date.js') }}"></script>
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
@@ -202,6 +202,7 @@
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
+    <script src="{{ asset('app-assets/js/scripts/pages/app-invoice.js') }}"></script>
     <!-- END: Page JS-->
 
 </body>
