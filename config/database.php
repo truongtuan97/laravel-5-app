@@ -92,6 +92,20 @@ return [
             'schema'   => 'trunglt',
         ],
 
+        'sqlsrv2' => [
+            'driver' => 'sqlsrv',
+            'url' => env('DATABASE_URL2'),
+            'host' => env('DB_HOST2', '171.244.23.69'),
+            'port' => env('DB_PORT2', '1433'),
+            'database' => env('DB_DATABASE2', 'AccountActiveLog'),
+            'username' => env('DB_USERNAME2', 'sa'),
+            'password' => env('DB_PASSWORD2', 'Passw0rd@123'),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema'   => 'trunglt',
+        ],
+
     ],
 
     /*

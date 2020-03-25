@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\CustomerUser;
 use App\AccountInfo;
+use App\CardChargeInfoLog;
+use App\AccountMoneyTracking;
 use Carbon\Carbon;
 
 class CustomerUserController extends Controller
@@ -49,5 +51,20 @@ class CustomerUserController extends Controller
         $user->save();
 
         return redirect('/home');
+    }
+
+    public function lichsunaptien() {
+        $user = auth()->user();
+        $userCardChargeLogs = CardChargeInfoLog::where('userAccount', $user->cAccName);
+        return view('users.lichsunaptien', compact('$userCardChargeLogs'));
+    }
+
+    public function lichsuruttien() {
+        $user = auth()->user();
+        $accMoneyTracking = new AccountMoneyTracking;
+        $accMoneyTracking->setConnection('sqlsrv2');
+
+        $userMoneyTakenLogs = $accMoneyTracking->where('AccountName', $user->cAccName);
+        return view('users.lichsuruttien', compact('userMoneyTakenLogs'));
     }
 }

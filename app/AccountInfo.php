@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class AccountInfo extends Authenticatable
 {
     use Notifiable;
-
+    // protected $connection = 'sqlsrv';
     protected $table = 'account_info';
     protected $dateFormat = 'Y-m-d H:i:s';
     public $timestamps = false;

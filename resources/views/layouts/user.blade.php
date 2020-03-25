@@ -149,6 +149,23 @@
                             <span class="badge badge badge-primary badge-pill float-right mr-2"></span>
                         </a>
                     </li>
+
+                    <li class=" nav-item">
+                        <a href="{{ route('lichsunaptien') }}">
+                            <i class="feather icon-user"></i>
+                            <span class="menu-title" data-i18n="Dashboard">Lịch sử nạp tiền</span>
+                            <span class="badge badge badge-primary badge-pill float-right mr-2"></span>
+                        </a>
+                    </li>
+
+                    <li class=" nav-item">
+                        <a href="{{ route('lichsuruttien') }}">
+                            <i class="feather icon-user"></i>
+                            <span class="menu-title" data-i18n="Dashboard">Lịch sử rút tiền</span>
+                            <span class="badge badge badge-primary badge-pill float-right mr-2"></span>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </div>

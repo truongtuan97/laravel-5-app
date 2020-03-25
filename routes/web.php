@@ -43,6 +43,9 @@ Route::group(['middleware' => ['admin']], function () {
 
 Auth::routes();
 
+Route::get('lichsunaptien', ['as' => 'lichsunaptien', 'uses' => 'CustomerUserController@lichsunaptien']);
+Route::get('lichsuruttien', ['as' => 'lichsuruttien', 'uses' => 'CustomerUserController@lichsuruttien']);
+
 Route::get('/home', 'HomeController@index')->name('/home');
 Route::get('users/{user}/show',  ['as' => 'users.show', 'uses' => 'CustomerUserController@show']);
 Route::get('users/{user}',  ['as' => 'users.edit', 'uses' => 'CustomerUserController@edit']);
