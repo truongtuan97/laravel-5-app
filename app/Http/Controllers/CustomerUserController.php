@@ -56,7 +56,7 @@ class CustomerUserController extends Controller
     public function lichsunaptien() {
         $user = auth()->user();
         $userCardChargeLogs = CardChargeInfoLog::where('userAccount', $user->cAccName);
-        return view('users.lichsunaptien', compact('$userCardChargeLogs'));
+        return view('users.lichsunaptien', compact('userCardChargeLogs'));
     }
 
     public function lichsuruttien() {
