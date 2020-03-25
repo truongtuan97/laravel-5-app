@@ -55,7 +55,7 @@ class CustomerUserController extends Controller
 
     public function lichsunaptien() {
         $user = auth()->user();
-        $userCardChargeLogs = CardChargeInfoLog::where('userAccount', $user->cAccName);
+        $userCardChargeLogs = CardChargeInfoLog::where('userAccount', $user->cAccName)->get();
         return view('users.lichsunaptien', compact('userCardChargeLogs'));
     }
 
@@ -64,7 +64,8 @@ class CustomerUserController extends Controller
         $accMoneyTracking = new AccountMoneyTracking;
         $accMoneyTracking->setConnection('sqlsrv2');
 
-        $userMoneyTakenLogs = $accMoneyTracking->where('AccountName', $user->cAccName);
+        $userMoneyTakenLogs = $accMoneyTracking->where('AccountName', $user->cAccName)->get();
+
         return view('users.lichsuruttien', compact('userMoneyTakenLogs'));
     }
 }
