@@ -92,7 +92,7 @@ return [
         //     'table' => 'password_resets',
         //     'expire' => 60,
         // ],
-        'customers' => [
+        'account_info' => [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,

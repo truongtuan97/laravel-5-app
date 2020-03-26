@@ -44,12 +44,14 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        // dd($data);
         return Validator::make($data, [
-            'username' => ['required', 'string', 'max:20', 'unique:customers'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:customers'],
+            'cAccName' => ['required', 'string', 'max:20', 'unique:account_info'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:account_info'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone' => ['required', 'numeric', 'min:11']
         ]);
+
     }
 
     /**
@@ -60,6 +62,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         $user = AccountInfo::create([
             'cAccName' => $data['username'],
             'cSecPassWord' => strtoupper(md5($data['password'])),

@@ -6,11 +6,11 @@
         @csrf
 
         <fieldset class="form-group position-relative has-icon-left">
-            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror"  placeholder="tài khoản"
-                name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
-            @error('username')
+            <input id="cAccName" type="text" class="form-control @error('cAccName') is-invalid @enderror"  placeholder="tài khoản"
+                name="cAccName" value="{{ old('cAccName') }}" required autocomplete="cAccName" autofocus>
+            @error('cAccName')
                 <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
+                    <strong>Tài khoản đã tồn tại.</strong>
                 </span>
             @enderror
         </fieldset>
