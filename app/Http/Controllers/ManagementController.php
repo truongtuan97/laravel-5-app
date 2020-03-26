@@ -45,7 +45,7 @@ class ManagementController extends Controller
 
     public function userUpdate(AccountInfo $user) {
         $this->validate(request(), [
-            'email' => 'required|max:255|email|unique:users,email,'.$user->id,
+            'email' => 'required|max:255|email|unique:account_info,email,'.$user->id,
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
             'phone' => ['nullable', 'numeric', 'min:11']
         ]);
