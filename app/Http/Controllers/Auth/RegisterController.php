@@ -64,7 +64,7 @@ class RegisterController extends Controller
     {
 
         $user = AccountInfo::create([
-            'cAccName' => $data['username'],
+            'cAccName' => $data['cAccName'],
             'cSecPassWord' => strtoupper(md5($data['password'])),
             'cPassWord' => strtoupper(md5($data['password'])),
             'iClientID' => 0,
@@ -91,7 +91,7 @@ class RegisterController extends Controller
             'phone' => $data['phone']
         ]);
         AccountHabitus::create([
-            'cAccName' => $data['username'],
+            'cAccName' => $data['cAccName'],
             'iLeftSecond' => '999999999',
             'dEndDate' => new Carbon('2050-12-31')
         ]);
