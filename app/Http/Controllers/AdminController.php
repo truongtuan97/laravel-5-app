@@ -27,7 +27,7 @@ class AdminController extends Controller
             $remember = false;
         }
         //kiểm tra trường remember có được chọn hay không
-        $user = AccountInfo::where('cAccName', $request->email)
+        $user = AccountInfo::where('email', $request->email)
                     ->where('cSecPassWord', strtoupper(md5($request->password)))
                     ->first();
         if ($user && $user->role == "admin") {
