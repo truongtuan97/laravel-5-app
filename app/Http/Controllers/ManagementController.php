@@ -172,7 +172,14 @@ class ManagementController extends Controller
     }
 
     public function logNapTien() {
-        $cardChargeLogs = CardChargeInfoLog::all();
+        if (request('fromDate') && request('toDate')) {
+            $cardChargeLogs = CardChargeInfoLog::whereRaw(
+                "(dateUpdate >= ? AND dateUpdate <= ?)",
+                [request('fromDate')." 00:00:00", request('toDate')." 23:59:59"]
+              )->orderBy('cardType')->get();
+        } else {
+            $cardChargeLogs = CardChargeInfoLog::all();
+        }
         return view('admin.lognaptien', compact('cardChargeLogs'));
     }
 
