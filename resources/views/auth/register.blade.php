@@ -5,7 +5,7 @@
     <form method="POST" action="{{ route('register') }}" class="form-horizontal">
         @csrf
 
-        <fieldset class="form-group position-relative has-icon-left">            
+        <fieldset class="form-group position-relative has-icon-left">
             <input id="username" type="text" class="form-control @error('username') is-invalid @enderror"  placeholder="tài khoản"
                 name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
             @error('username')
@@ -15,7 +15,7 @@
             @enderror
         </fieldset>
 
-        <fieldset class="form-group position-relative has-icon-left">            
+        <fieldset class="form-group position-relative has-icon-left">
             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"  placeholder="email"
                 value="{{ old('email') }}" required autocomplete="email">
             @error('email')
@@ -25,7 +25,7 @@
             @enderror
         </fieldset>
 
-        <fieldset class="form-group position-relative has-icon-left">            
+        <fieldset class="form-group position-relative has-icon-left">
             <input id="email" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="số điện thoại"
                 value="{{ old('phone') }}" required autocomplete="phone">
             @error('phone')
@@ -35,8 +35,8 @@
             @enderror
         </fieldset>
 
-        <fieldset class="form-group position-relative has-icon-left">            
-            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="mật khẩu"
+        <fieldset class="form-group position-relative has-icon-left">
+            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="mật khẩu 8 ký tự trở lên"
                 required autocomplete="new-password">
 
             @error('password')
@@ -46,7 +46,7 @@
             @enderror
         </fieldset>
 
-        <fieldset class="form-group position-relative has-icon-left">            
+        <fieldset class="form-group position-relative has-icon-left">
             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="nhập lại mật khẩu"
                 required autocomplete="new-password">
         </fieldset>
@@ -59,7 +59,7 @@
                 </fieldset>
             </div>
         </div>
-        
+
         <button type="submit" class="btn btn-outline-primary btn-block"><i class="feather icon-user"></i> Đăng ký</button>
     </form>
     <a href="{{ route('login') }}" class="btn btn-outline-danger btn-block mt-2"><i class="feather icon-unlock"></i> Đăng nhập</a>
