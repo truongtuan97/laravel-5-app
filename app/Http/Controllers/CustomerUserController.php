@@ -35,7 +35,7 @@ class CustomerUserController extends Controller
 
     public function update(AccountInfo $user) {
         $this->validate(request(), [
-            'email' => 'required|max:255|email|unique:users,email,'.$user->id,
+            'email' => 'required|max:255|email|unique:account_info,email,'.$user->id,
             // 'password' => ['reuired', 'string', 'min:8', 'confirmed'],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
             'phone' => ['required', 'numeric', 'min:11']
