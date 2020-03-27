@@ -75,7 +75,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $user = AccountInfo::where('cAccName', $request->email)
-                    ->where('cSecPassWord', strtoupper(md5($request->password)))
+                    ->where('cPassWord', strtoupper(md5($request->password)))
                     ->first();
 
         if ($user) {

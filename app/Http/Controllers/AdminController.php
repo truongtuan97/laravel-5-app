@@ -28,10 +28,10 @@ class AdminController extends Controller
         }
         //kiểm tra trường remember có được chọn hay không
         $user = AccountInfo::where('email', $request->email)
-                    ->where('cSecPassWord', strtoupper(md5($request->password)))
+                    ->where('cPassWord', strtoupper(md5($request->password)))
                     ->first();
         if ($user && $user->role == "admin") {
-            $chkm = PromotionConfiguration::all()->take(1);
+            // $chkm = PromotionConfiguration::all()->take(1);
 
             Auth::login($user);
             return redirect('list_users');
