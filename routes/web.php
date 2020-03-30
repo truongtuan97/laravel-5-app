@@ -21,11 +21,11 @@ route::get('/admin', 'AdminController@getLogin')->name('admin');
 route::post('/admin', 'AdminController@postLogin');
 
 Route::group(['middleware' => ['admin']], function () {
-  Route::get('admin/users/{user}/napcard',  ['as' => 'management.user.napcard', 'uses' => 'ManagementController@userNapcardEdit']);
+  Route::get('admin/users/{cAccName}/napcard',  ['as' => 'management.user.napcard', 'uses' => 'ManagementController@userNapcardEdit']);
   Route::patch('admin/users/{user}/napcard',  ['as' => 'management.user.napcard', 'uses' => 'ManagementController@userNapcardUpdate']);
 
-  Route::get('admin/users/{user}/show',  ['as' => 'management.user.show', 'uses' => 'ManagementController@userDetail']);
-  Route::get('admin/users/{user}/edit',  ['as' => 'management.user.edit', 'uses' => 'ManagementController@userEdit']);
+  Route::get('admin/users/{cAccName}/show',  ['as' => 'management.user.show', 'uses' => 'ManagementController@userDetail']);
+  Route::get('admin/users/{cAccName}/edit',  ['as' => 'management.user.edit', 'uses' => 'ManagementController@userEdit']);
   Route::patch('admin/users/{user}/update',  ['as' => 'management.user.update', 'uses' => 'ManagementController@userUpdate']);
   Route::get('list_users', ['as' => 'users', 'uses' => 'ManagementController@listUser']);
 

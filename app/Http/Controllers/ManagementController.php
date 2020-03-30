@@ -33,13 +33,13 @@ class ManagementController extends Controller
         return view('admin.list_user', compact('users'));
     }
 
-    public function userDetail($id) {
-        $user = AccountInfo::where('id', $id)->first();
+    public function userDetail($cAccName) {
+        $user = AccountInfo::where('cAccName', $cAccName)->firstOrFail();
         return view('admin.user.show', compact('user'));
     }
 
-    public function userEdit($id) {
-        $user = AccountInfo::where('id', $id)->first();
+    public function userEdit($cAccName) {
+        $user = AccountInfo::where('cAccName', $cAccName)->firstOrFail();
         return view('admin.user.edit', compact('user'));
     }
 
@@ -103,8 +103,8 @@ class ManagementController extends Controller
 
     }
 
-    public function userNapcardEdit($id) {
-        $user = AccountInfo::where('id', $id)->first();
+    public function userNapcardEdit($cAccName) {
+        $user = AccountInfo::where('cAccName', $cAccName)->firstOrFail();
         $chargeValues = ChargeValue::get();
         return view('admin.user.napcard', compact(['user', 'chargeValues']));
     }

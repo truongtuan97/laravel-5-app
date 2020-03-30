@@ -35,9 +35,9 @@
                                     <td>{{$user->bIsBanned}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->phone}}</td>
-                                    <td><a href="{{ route('management.user.napcard', $user) }}"><i class="feather icon-dollar-sign"></i></a></td>
-                                    <td><a href="{{ route('management.user.edit', $user) }}"><i class="feather icon-edit-1"></i></a></td>
-                                    <td><a href="{{ route('management.user.show', $user) }}"><i class="feather icon-eye"></i></a></td>
+                                    <td><a href="{{ route('management.user.napcard', $user->cAccName) }}"><i class="feather icon-dollar-sign"></i></a></td>
+                                    <td><a href="{{ route('management.user.edit', $user->cAccName) }}"><i class="feather icon-edit-1"></i></a></td>
+                                    <td><a href="{{ route('management.user.show', $user->cAccName) }}"><i class="feather icon-eye"></i></a></td>
                                 </tr>
                             @endforeach
                             </tbody>
