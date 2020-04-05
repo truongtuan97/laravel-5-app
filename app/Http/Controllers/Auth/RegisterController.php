@@ -48,8 +48,9 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'cAccName' => ['required', 'string', 'max:20', 'unique:account_info'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:account_info'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone' => ['required', 'numeric', 'min:11']
+            'phone' => ['required', 'numeric', 'min:11'],
+            'password1' => ['required', 'string', 'min:8', 'confirmed'],
+            'password2' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
     }
@@ -65,11 +66,12 @@ class RegisterController extends Controller
 
         $user = AccountInfo::create([
             'cAccName' => $data['cAccName'],
-            'cSecPassWord' => strtoupper(md5($data['password'])),
-            'cPassWord' => strtoupper(md5($data['password'])),
+            'cPassWord' => strtoupper(md5($data['password1'])),
+            'cSecPassWord' => strtoupper(md5($data['password2'])),            
             'iClientID' => 0,
             'dLoginDate' => Carbon::Now(),
             'dLogoutDate' => Carbon::Now(),
+            'dCreatedDate' => Carbon::Now(),
             'nExtPoint' => 1,
             'nExtPoint1' => 0,
             'nExtPoint2' => 0,
@@ -86,7 +88,8 @@ class RegisterController extends Controller
             'bIsUseOTP' => 0,
             'iOTPSessionLifeTime' => 1,
             'iServiceFlag' => 0,
-            'plainpassword' => $data['password'],
+            'plainpassword' => $data['password1'],
+            'plainpassword2' => $data['password2'],
             'email' => $data['email'],
             'phone' => $data['phone']
         ]);

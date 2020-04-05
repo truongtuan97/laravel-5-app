@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
+        $user = auth()->user();        
         return redirect('/users/'.$user->id.'/show');
     }
 }

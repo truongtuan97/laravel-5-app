@@ -39,6 +39,7 @@ Route::group(['middleware' => ['admin']], function () {
   Route::get('admin/lognaptien', ['as' => 'management.lognaptien.list', 'uses' => 'ManagementController@logNapTien']);
   Route::post('admin/lognaptien', ['as' => 'management.lognaptien.list', 'uses' => 'ManagementController@logNapTien']);
   Route::get('admin/logquanlytaikhoan', ['as' => 'management.logquanlytaikhoan.list', 'uses' => 'ManagementController@logQuanLyTaiKhoan']);
+  Route::post('admin/logquanlytaikhoan', ['as' => 'management.logquanlytaikhoan.list', 'uses' => 'ManagementController@logQuanLyTaiKhoan']);
 });
 //End admin session
 

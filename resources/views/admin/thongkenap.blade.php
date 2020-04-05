@@ -16,13 +16,15 @@
                             <div class="col md-4">
                                 <div class="row">
                                     <div class="col md-4">
-                                        <label for="ngay_bat_dau"
+                                        <label for="fromDate"
                                             class="col-form-label text-md-right">{{ __('Ngày bắt đầu') }}</label>
                                     </div>
                                     <div class="col -md-6">
-                                        <input id="fromDate" type="text" name="fromDate"
-                                            class="pick-a-date bg-white form-control" value="{{
-                                        Carbon\Carbon::parse(Carbon\Carbon::Now())->format('m/d/Y') }}">
+                                        {{old('fromDate')}}
+                                        <input id="fromDate" type="text" name="fromDate"                                        
+                                            class="pick-a-date bg-white form-control" value="{{ !empty($fromDate) ? 
+                                                Carbon\Carbon::parse($fromDate)->format('m/d/Y') :
+                                                Carbon\Carbon::parse(Carbon\Carbon::Now())->format('m/d/Y') }}">
                                     </div>
 
                                 </div>
@@ -31,13 +33,14 @@
                             <div class="col md-4">
                                 <div class="row">
                                     <div class="col md-4">
-                                        <label for="ngay_bat_dau"
+                                        <label for="toDate"
                                             class="col-form-label text-md-right">{{ __('Ngày kết thúc') }}</label>
                                     </div>
                                     <div class="col md-6">
                                         <input id="toDate" type="text" name="toDate"
-                                            class="pick-a-date bg-white form-control" value="{{
-                                        Carbon\Carbon::parse(Carbon\Carbon::Now())->format('m/d/Y') }}">
+                                        class="pick-a-date bg-white form-control" value="{{ !empty($toDate) ? 
+                                                Carbon\Carbon::parse($toDate)->format('m/d/Y') :
+                                                Carbon\Carbon::parse(Carbon\Carbon::Now())->format('m/d/Y') }}">
                                     </div>
 
                                 </div>
@@ -82,7 +85,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive">
+                    <!-- <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -103,7 +106,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
+                    </div> -->
                     <!-- datatable ends -->
                 </div>
             </div>

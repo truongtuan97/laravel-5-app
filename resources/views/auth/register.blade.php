@@ -36,18 +36,34 @@
         </fieldset>
 
         <fieldset class="form-group position-relative has-icon-left">
-            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="mật khẩu 8 ký tự trở lên"
-                required autocomplete="new-password">
+            <input id="password1" type="password" class="form-control @error('password1') is-invalid @enderror" name="password1" 
+                placeholder="mật khẩu cấp 1: 8 ký tự trở lên" required autocomplete="new-password">
 
-            @error('password')
+            @error('password1')
                 <span class="invalid-feedback" role="alert">
-                    <strong>Vui lòng nhập mật khẩu</strong>
+                    <strong>Vui lòng nhập mật khẩu cấp 1</strong>
                 </span>
             @enderror
         </fieldset>
 
         <fieldset class="form-group position-relative has-icon-left">
-            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="nhập lại mật khẩu"
+            <input id="password1-confirm" type="password" class="form-control" name="password1_confirmation" placeholder="nhập lại mật khẩu cấp 1"
+                required autocomplete="new-password">
+        </fieldset>
+
+        <fieldset class="form-group position-relative has-icon-left">
+            <input id="password2" type="password" class="form-control @error('password2') is-invalid @enderror" name="password2" 
+                placeholder="mật khẩu cấp 2: 8 ký tự trở lên" required autocomplete="new-password">
+
+            @error('password2')
+                <span class="invalid-feedback" role="alert">
+                    <strong>Vui lòng nhập mật khẩu cấp 2</strong>
+                </span>
+            @enderror
+        </fieldset>
+
+        <fieldset class="form-group position-relative has-icon-left">
+            <input id="password2-confirm" type="password" class="form-control" name="password2_confirmation" placeholder="nhập lại mật khẩu cấp 2"
                 required autocomplete="new-password">
         </fieldset>
 

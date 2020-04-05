@@ -45,22 +45,31 @@ class ManagementController extends Controller
 
     public function userUpdate(AccountInfo $user) {
         $this->validate(request(), [
-            'email' => 'required|max:255|email|unique:account_info,email,'.$user->id,
-            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
-            'phone' => ['nullable', 'numeric', 'min:11']
+            'email' => 'nullable|max:255|email|unique:account_info,email,'.$user->id,
+            'phone' => ['nullable', 'numeric', 'min:11'],
+            'password1' => ['nullable', 'string', 'min:8', 'confirmed'],
+            'password2' => ['nullable', 'string', 'min:8', 'confirmed']
         ]);
 
         $admin = auth()->user();
-
-        $user->email = request('email');
-        if (request('password')) {
-            $user->plainpassword = request('password');
-            $user->cSecPassWord = md5(request('password'));
-            $user->cPassWord = md5(request('password'));
+        
+        if (request('email')) {
+            $user->email = request('email');
         }
+
         if (request('phone')) {
             $user->phone = request('phone');
         }
+
+        if (request('password1')) {
+            $user->plainpassword = request('password1');            
+            $user->cPassWord = md5(request('password1'));
+        }
+        if (request('password2')) {
+            $user->plainpassword2 = request('password2');
+            $user->cSecPassWord = md5(request('password2'));
+        }        
+        
         $user->save();
 
         $accInfoLog = new AccountInfoLog();
@@ -149,6 +158,10 @@ class ManagementController extends Controller
     }
 
     public function thongKeNap() {
+        
+        $fromDate = request('fromDate');
+        $toDate = request('toDate');
+
         $cardChargeLogs = CardChargeInfoLog::whereRaw(
             "(dateUpdate >= ? AND dateUpdate <= ?)",
             [request('fromDate')." 00:00:00", request('toDate')." 23:59:59"]
@@ -168,23 +181,38 @@ class ManagementController extends Controller
                 break;
             }
         }
-        return view('admin.thongkenap', compact(['cardChargeLogs', 'momo', 'zing', 'bank']));
+        return view('admin.thongkenap', compact(['cardChargeLogs', 'momo', 'zing', 'bank', 'fromDate', 'toDate']));        
     }
 
     public function logNapTien() {
+        $cardChargeLogs = [];
+        $fromDate = request('fromDate');
+        $toDate = request('toDate');
+
         if (request('fromDate') && request('toDate')) {
             $cardChargeLogs = CardChargeInfoLog::whereRaw(
                 "(dateUpdate >= ? AND dateUpdate <= ?)",
                 [request('fromDate')." 00:00:00", request('toDate')." 23:59:59"]
               )->orderBy('cardType')->get();
-        } else {
-            $cardChargeLogs = CardChargeInfoLog::all();
-        }
-        return view('admin.lognaptien', compact('cardChargeLogs'));
+        } 
+        // else {
+        //     $cardChargeLogs = CardChargeInfoLog::all();
+        // }
+        return view('admin.lognaptien', compact(['cardChargeLogs', 'fromDate', 'toDate']));
     }
 
     public function logQuanLyTaiKhoan() {
-        $accountInfoLogs = AccountInfoLog::all();
-        return view('admin.logquanlytaikhoan', compact('accountInfoLogs'));
+        $accountInfoLogs = [];
+        $fromDate = request('fromDate');
+        $toDate = request('toDate');
+
+        if (request('fromDate') && request('toDate')) {
+            $accountInfoLogs = AccountInfoLog::whereRaw(
+                "(dateUpdate >= ? AND dateUpdate <= ?)",
+                [request('fromDate')." 00:00:00", request('toDate')." 23:59:59"]
+              )->get();
+        }
+        // $accountInfoLogs = AccountInfoLog::all();
+        return view('admin.logquanlytaikhoan', compact(['accountInfoLogs', 'fromDate', 'toDate']));
     }
 }

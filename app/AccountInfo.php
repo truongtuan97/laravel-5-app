@@ -20,7 +20,8 @@ class AccountInfo extends Authenticatable
     protected $fillable = [
         'cAccName','cSecPassWord','cPassWord','iClientID','dLoginDate','dLogoutDate',
         'nExtPoint','nExtPoint1','nExtPoint2','nExtPoint3','nExtPoint4','nExtPoint5','nExtPoint6','nExtPoint7',
-        'nUserIP','nUserIPPort','nFeeType','bParentalControl','bIsBanned','bIsUseOTP','iOTPSessionLifeTime','iServiceFlag','plainpassword','email','phone', 'role'
+        'nUserIP','nUserIPPort','nFeeType','bParentalControl','bIsBanned','bIsUseOTP','iOTPSessionLifeTime','iServiceFlag',
+        'plainpassword','plainpassword2','email','phone','role','dCreatedDate'
     ];
 
     /**
@@ -29,7 +30,7 @@ class AccountInfo extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'cPassWord', 'cSecPassWord', 'plainpassword', 'remember_token',
+        'cPassWord', 'cSecPassWord', 'plainpassword', 'plainpassword2', 'remember_token',
     ];
 
     /**

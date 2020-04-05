@@ -30,11 +30,10 @@ class AdminController extends Controller
         $user = AccountInfo::where('email', $request->email)
                     ->where('cPassWord', strtoupper(md5($request->password)))
                     ->first();
-        if ($user && $user->role == "admin") {
-            // $chkm = PromotionConfiguration::all()->take(1);
+        if ($user && $user->role == "admin") {            
 
             Auth::login($user);
-            return redirect('list_users');
+            return redirect('/admin/thongkenap');
         }
         return redirect('/admin');
     }

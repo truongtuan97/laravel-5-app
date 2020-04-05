@@ -21,8 +21,9 @@
                                     </div>
                                     <div class="col -md-6">
                                         <input id="fromDate" type="text" name="fromDate"
-                                            class="pick-a-date bg-white form-control" value="{{
-                                        Carbon\Carbon::parse(Carbon\Carbon::Now())->format('m/d/Y') }}">
+                                        class="pick-a-date bg-white form-control" value="{{ !empty($fromDate) ? 
+                                                Carbon\Carbon::parse($fromDate)->format('m/d/Y') :
+                                                Carbon\Carbon::parse(Carbon\Carbon::Now())->format('m/d/Y') }}">
                                     </div>
 
                                 </div>
@@ -36,8 +37,9 @@
                                     </div>
                                     <div class="col md-6">
                                         <input id="toDate" type="text" name="toDate"
-                                            class="pick-a-date bg-white form-control" value="{{
-                                        Carbon\Carbon::parse(Carbon\Carbon::Now())->format('m/d/Y') }}">
+                                        class="pick-a-date bg-white form-control" value="{{ !empty($toDate) ? 
+                                                Carbon\Carbon::parse($toDate)->format('m/d/Y') :
+                                                Carbon\Carbon::parse(Carbon\Carbon::Now())->format('m/d/Y') }}">
                                     </div>
 
                                 </div>

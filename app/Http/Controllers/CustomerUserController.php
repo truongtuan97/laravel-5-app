@@ -25,6 +25,8 @@ class CustomerUserController extends Controller
 
     public function show() {
         $user = Auth::user();
+        $user->email = $this->displayEmail($user->email);
+        $user->phone = $this->displayPhone($user->phone);
         return view('users.show', compact('user'));
     }
 
@@ -67,5 +69,21 @@ class CustomerUserController extends Controller
         $userMoneyTakenLogs = $accMoneyTracking->where('AccountName', $user->cAccName)->get();
 
         return view('users.lichsuruttien', compact('userMoneyTakenLogs'));
+    }
+
+    private function displayEmail($email) {
+        $pieces = explode("@", $email);
+        $firstString = $pieces[0];
+        $secondString = $pieces[1];
+        $firstString = str_replace(substr($firstString, 3), '***', $firstString);
+
+        return $firstString.'@'.$secondString;
+    }
+
+    private function displayPhone($phone) {
+        $str1 = substr($phone, 0, 3);
+        $str2 = substr($phone, 6, 3);
+        $phone = $str1.'****'.$str2;
+        return $phone;
     }
 }
