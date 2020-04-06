@@ -45,6 +45,18 @@ Route::group(['middleware' => ['admin']], function () {
 
 Auth::routes();
 
+Route::get('password_c1/{cAccName}/edit', ['as' => 'password_c1.users.edit', 'uses' => 'CustomerUserController@editPwdC1']);
+Route::patch('password_c1/{cAccName}/update', ['as' => 'password_c1.users.update', 'uses' => 'CustomerUserController@updatePwdC1']);
+
+Route::get('password_c2/{cAccName}/edit', ['as' => 'password_c2.users.edit', 'uses' => 'CustomerUserController@editPwdC2']);
+Route::patch('password_c2/{cAccName}/update', ['as' => 'password_c2.users.update', 'uses' => 'CustomerUserController@updatePwdC2']);
+
+Route::get('email/{cAccName}/edit', ['as' => 'email.users.edit', 'uses' => 'CustomerUserController@editEmail']);
+Route::patch('email/{cAccName}/update', ['as' => 'email.users.update', 'uses' => 'CustomerUserController@updateEmail']);
+
+Route::get('phone/{cAccName}/edit', ['as' => 'phone.users.edit', 'uses' => 'CustomerUserController@editPhone']);
+Route::patch('phone/{cAccName}/update', ['as' => 'phone.users.update', 'uses' => 'CustomerUserController@updatePhone']);
+
 Route::get('lichsunaptien', ['as' => 'lichsunaptien', 'uses' => 'CustomerUserController@lichsunaptien']);
 Route::get('lichsuruttien', ['as' => 'lichsuruttien', 'uses' => 'CustomerUserController@lichsuruttien']);
 

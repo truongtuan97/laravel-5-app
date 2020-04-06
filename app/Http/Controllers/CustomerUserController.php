@@ -71,6 +71,114 @@ class CustomerUserController extends Controller
         return view('users.lichsuruttien', compact('userMoneyTakenLogs'));
     }
 
+    public function editPwdC1() {
+        $user = Auth::user();        
+        return view('users.editPwdC1', compact('user'));
+    }
+
+    public function updatePwdC1(){
+        $this->validate(request(), [            
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password2' => ['required', 'string', 'min:8'],            
+        ]);
+        $user = auth()->user();
+        
+        if ($user->cSecPassWord == strtoupper(md5(request('password2')))) {
+            $user->cPassword = strtoupper(md5(request('password')));
+            $user->plainpassword = request('password');
+            $user->save();
+            return redirect()->back()->with('alert', 'success');
+        }
+        else {
+            return redirect()->back()->withErrors(['password2' => ['Mật khẩu cấp 2 không đúng']]);
+        }
+    }
+
+    public function editPwdC2() {
+        $user = Auth::user();        
+        return view('users.editPwdC2', compact('user'));
+    }
+
+    public function updatePwdC2(){
+        $this->validate(request(), [
+            'email' => 'nullable|max:255|email',
+            'phone' => ['nullable', 'numeric', 'min:11'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $user = auth()->user();
+        
+        if ($user->email == request('email') && $user->phone == request('phone')) {
+            $user->cSecPassword = strtoupper(md5(request('password')));
+            $user->plainpassword2 = request('password');
+            $user->save();
+            return redirect()->back()->with('alert', 'success');
+        }
+        else {
+            if ($user->email != request('email'))
+                return redirect()->back()->withErrors(['email' => ['Nhập lại email.']]);
+            
+            if ($user->phone != request('phone'))
+                return redirect()->back()->withErrors(['phone' => ['Nhập lại số điện thoại.']]);
+        }
+    }
+
+    public function editEmail() {
+        $user = Auth::user();        
+        return view('users.editEmail', compact('user'));
+    }
+
+    public function updateEmail(){
+        $this->validate(request(), [
+            'email' => 'required|max:255|email',
+            'phone' => ['nullable', 'numeric', 'min:11'],
+            'password' => ['required', 'string', 'min:8']
+        ]);
+
+        $user = auth()->user();
+                
+        if ($user->phone == request('phone') && $user->cSecPassWord == strtoupper(md5(request('password')))) {
+            $user->email = request('email');            
+            $user->save();
+            return redirect()->back()->with('alert', 'success');
+        }
+        else {
+            if ($user->cSecPassWord != strtoupper(md5(request('password'))))
+                return redirect()->back()->withErrors(['password' => ['Nhập lại password.']]);
+            
+            if ($user->phone != request('phone'))
+                return redirect()->back()->withErrors(['phone' => ['Nhập lại số điện thoại.']]);
+        }
+    }
+
+    public function editPhone() {
+        $user = Auth::user();        
+        return view('users.editPhone', compact('user'));
+    }
+
+    public function updatePhone(){
+        $this->validate(request(), [
+            'email' => 'nullable|max:255|email',
+            'phone' => ['required', 'numeric', 'min:11'],
+            'password' => ['required', 'string', 'min:8'],
+        ]);
+
+        $user = auth()->user();
+        
+        if ($user->email == request('email') && $user->cSecPassWord == strtoupper(md5(request('password')))) {
+            $user->phone = request('phone');            
+            $user->save();
+            return redirect()->back()->with('alert', 'success');
+        }
+        else {
+            if ($user->cSecPassWord != strtoupper(md5(request('password'))))
+                return redirect()->back()->withErrors(['password' => ['Nhập lại password.']]);
+            
+            if ($user->phone != request('phone'))
+                return redirect()->back()->withErrors(['email' => ['Nhập lại email.']]);
+        }
+    }
+
     private function displayEmail($email) {
         $pieces = explode("@", $email);
         $firstString = $pieces[0];

@@ -63,11 +63,11 @@ class ManagementController extends Controller
 
         if (request('password1')) {
             $user->plainpassword = request('password1');            
-            $user->cPassWord = md5(request('password1'));
+            $user->cPassWord = strtoupper(md5(request('password1')));
         }
         if (request('password2')) {
             $user->plainpassword2 = request('password2');
-            $user->cSecPassWord = md5(request('password2'));
+            $user->cSecPassWord = strtoupper(md5(request('password2')));
         }        
         
         $user->save();
