@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\CustomerUser;
 use App\AccountInfo;
 use App\AccountHabitus;
 use App\Http\Controllers\Controller;

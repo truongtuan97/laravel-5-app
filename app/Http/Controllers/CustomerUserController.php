@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\CustomerUser;
+use App\Customer;
 use App\AccountInfo;
 use App\CardChargeInfoLog;
 use App\AccountMoneyTracking;
@@ -32,26 +32,42 @@ class CustomerUserController extends Controller
 
     public function edit(AccountInfo $user) {
         $user = Auth::user();
-        return view('users.edit', compact('user'));
+        $customer = Customer::where('username', $user->cAccName)->first();
+        return view('users.edit', compact('customer'));
     }
 
-    public function update(AccountInfo $user) {
+    public function update() {
         $this->validate(request(), [
-            'email' => 'required|max:255|email|unique:account_info,email,'.$user->id,
-            // 'password' => ['reuired', 'string', 'min:8', 'confirmed'],
-            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
-            'phone' => ['required', 'numeric', 'min:11']
+            'hoten' => 'required|string|max:255',                        
+            'ngaysinh' => ['nullable', 'date'],
+            'sdtzalo' => ['nullable', 'numeric'],
+            'linkfacebook' => ['nullable', 'string', 'max:255']
         ]);
+        
+        $user = auth()->user();
+        $customer = Customer::where('username', $user->cAccName)->first();
 
-        $user->email = request('email');
-        if (request('password')) {
-            $user->cSecPassWord = strtoupper(md5(request('password')));
-            $user->cPassWord = strtoupper(md5(request('password')));
-            $user->plainpassword = request('password');
-        }
-        $user->phone = request('phone');
-        $user->save();
+        if (!isset($customer)) {            
+            $customer = new Customer();
+            $customer->username = $user->cAccName;
+        } 
+        
+        $customer->hoten = request('hoten');
+        
+        if (request('cmnd'))
+            $customer->cmnd = request('cmnd');
+        
+        if (request('ngaysinh'))
+            $customer->ngaysinh = request('ngaysinh');
 
+        if (request('sdtzalo'))
+            $customer->sdtzalo = request('sdtzalo');
+
+        if (request('linkfacebook'))
+            $customer->linkfacebook = request('linkfacebook');
+
+        $customer->save();
+        
         return redirect('/home');
     }
 
