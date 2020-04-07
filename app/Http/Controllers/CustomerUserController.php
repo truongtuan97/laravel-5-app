@@ -186,12 +186,12 @@ class CustomerUserController extends Controller
             $user->save();
             return redirect()->back()->with('alert', 'success');
         }
-        else {
+        else {            
             if ($user->cSecPassWord != strtoupper(md5(request('password'))))
                 return redirect()->back()->withErrors(['password' => ['Nhập lại password.']]);
             
-            if ($user->phone != request('phone'))
-                return redirect()->back()->withErrors(['email' => ['Nhập lại email.']]);
+            if ($user->email != request('email'))
+                return redirect()->back()->withErrors(['email' => ['Nhập lại email.']]);               
         }
     }
 

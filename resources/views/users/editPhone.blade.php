@@ -25,7 +25,8 @@
             {{ method_field('PATCH') }}
 
             <div class="form-group row">
-              <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Nhập số điện thoại') }}</label>
+              <label for="phone"
+                class="col-md-4 col-form-label text-md-right">{{ __('Nhập số điện thoại mới') }}</label>
 
               <div class="col-md-6">
                 <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone"
@@ -43,8 +44,7 @@
               <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
 
               <div class="col-md-6">
-                <input id="email" type="email" class="form-control @error('password') is-invalid @enderror"
-                  name="email">
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email">
 
                 @error('email')
                 <span class="invalid-feedback" role="alert">
