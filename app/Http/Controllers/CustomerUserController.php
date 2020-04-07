@@ -33,6 +33,10 @@ class CustomerUserController extends Controller
     public function edit(AccountInfo $user) {
         $user = Auth::user();
         $customer = Customer::where('username', $user->cAccName)->first();
+        if (!isset($customer))
+        {
+            $customer = new Customer();
+        }
         return view('users.edit', compact('customer'));
     }
 
