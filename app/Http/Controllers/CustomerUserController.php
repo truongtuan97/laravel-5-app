@@ -37,7 +37,7 @@ class CustomerUserController extends Controller
         {
             $customer = new Customer();
         }
-        return view('users.edit', compact('customer'));
+        return view('users.edit', compact('user', 'customer'));
     }
 
     public function update() {

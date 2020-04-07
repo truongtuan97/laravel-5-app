@@ -8,7 +8,7 @@
         <div class="card-header">{{ __('Update information') }}</div>
 
         <div class="card-body">
-          <form method="post" action="{{route('users.update', $customer)}}">
+          <form method="post" action="{{route('users.update', $user)}}">
             @csrf
             {{ method_field('PATCH') }}
 
