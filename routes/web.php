@@ -40,6 +40,9 @@ Route::group(['middleware' => ['admin']], function () {
   Route::post('admin/lognaptien', ['as' => 'management.lognaptien.list', 'uses' => 'ManagementController@logNapTien']);
   Route::get('admin/logquanlytaikhoan', ['as' => 'management.logquanlytaikhoan.list', 'uses' => 'ManagementController@logQuanLyTaiKhoan']);
   Route::post('admin/logquanlytaikhoan', ['as' => 'management.logquanlytaikhoan.list', 'uses' => 'ManagementController@logQuanLyTaiKhoan']);
+
+  Route::get('admin/lichsuruttien', ['as' => 'management.lichsuruttien.list', 'uses' => 'ManagementController@lichsuruttien']);
+  Route::post('admin/lichsuruttien', ['as' => 'management.lichsuruttien.list', 'uses' => 'ManagementController@lichsuruttien']);
 });
 //End admin session
 

@@ -11,6 +11,7 @@ use App\CardChargeInfoLog;
 use App\AccountInfoLog;
 use App\ChargeValue;
 use App\ConfigKhuyenMaiValue;
+use App\AccountMoneyTracking;
 
 class ManagementController extends Controller
 {
@@ -131,23 +132,27 @@ class ManagementController extends Controller
 
             $cardType = request('cardType');
             $value = request('soTien');
+            $realValue = 0;
 
             if ($cardType == 'zing') {
-                $value = ( $value + ($value*0.0) + ($value* $chkm->khuyenmai) );
+                $realValue = ( $value + ($value*0.0) + ($value* $chkm->khuyenmai) );
             } else if ($cardType == 'momo' || $cardType == 'bank') {
-                $value = ( $value+($value*0.1) + ($value* $chkm->khuyenmai) );
+                $realValue = ( $value+($value*0.1) + ($value* $chkm->khuyenmai) );
             } else {
-                $value = $value + ($value * $chkm->khuyenmai);
+                $realValue = $value + ($value * $chkm->khuyenmai);
             }
-            $user->nExtPoint1 += $value;
+            $user->nExtPoint1 += $realValue;
             $user->save();
+           
+            $khuyenmai = ((($realValue-$value) / $value) / 100)."%";
 
             $cardChargeLog = new CardChargeInfoLog;
             $cardChargeLog->adminAccount = $admin->cAccName;
             $cardChargeLog->userAccount = $user->cAccName;
             $cardChargeLog->cardType = $cardType;
-            $cardChargeLog->value = request('soTien');
+            $cardChargeLog->value = $value;
             $cardChargeLog->realValue = $value;
+            $cardChargeLog->khuyenmai = $khuyenmai;
             $cardChargeLog->dateUpdate = Carbon::Now();
             $cardChargeLog->save();
 
@@ -214,5 +219,21 @@ class ManagementController extends Controller
         }
         // $accountInfoLogs = AccountInfoLog::all();
         return view('admin.logquanlytaikhoan', compact(['accountInfoLogs', 'fromDate', 'toDate']));
+    }
+
+    public function lichsuruttien() {        
+        $accMoneyTracking = new AccountMoneyTracking;
+        $accMoneyTracking->setConnection('sqlsrv2');
+
+        $fromDate = request('fromDate');
+        $toDate = request('toDate');
+        $accountName = request('accountName');
+        
+        $userMoneyTakenLogs = $accMoneyTracking->whereRaw(
+            "(AccountName like '%?%' AND dateUpdate >= ? AND dateUpdate <= ?)",
+            [request('accountName'), request('fromDate')." 00:00:00", request('toDate')." 23:59:59"]
+          )->get();
+
+        return view('admin.lichsuruttien', compact([ 'userMoneyTakenLogs', 'fromDate', 'toDate', 'accountName' ]));
     }
 }
