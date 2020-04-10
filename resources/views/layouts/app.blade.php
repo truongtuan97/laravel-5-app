@@ -220,7 +220,19 @@
   <script src="{{ asset('app-assets/vendors/js/ui/prism.min.js') }}"></script>
   <script src="{{ asset('app-assets/vendors/js/tables/datatable/datatables.min.js') }}"></script>
   <script src="{{ asset('app-assets/js/scripts/pages/page-users.js') }}"></script>
+
+  <script src="{{ asset('app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js') }}"></script>
+  <script src="{{ asset('app-assets/vendors/js/tables/buttons.flash.min.js') }}"></script>
+  <script src="{{ asset('app-assets/vendors/js/tables/jszip.min.js') }}"></script>
+  <script src="{{ asset('app-assets/vendors/js/tables/pdfmake.min.js') }}"></script>
+  <script src="{{ asset('app-assets/vendors/js/tables/vfs_fonts.js') }}"></script>
+  <script src="{{ asset('app-assets/vendors/js/tables/buttons.html5.min.js') }}"></script>
+  <script src="{{ asset('app-assets/vendors/js/tables/buttons.print.min.js') }}"></script>
   <!-- END: Page Vendor JS-->
+
+  <!-- BEGIN: Page JS-->
+  <script src="{{ asset('app-assets/js/scripts/tables/datatables/datatable-advanced.js') }}"></script>
+  <!-- END: Page JS-->
 
   <!-- BEGIN: Theme JS-->
   <script src="{{ asset('app-assets/js/core/app-menu.js') }}"></script>

@@ -28,6 +28,7 @@ Route::group(['middleware' => ['admin']], function () {
   Route::get('admin/users/{cAccName}/edit',  ['as' => 'management.user.edit', 'uses' => 'ManagementController@userEdit']);
   Route::patch('admin/users/{user}/update',  ['as' => 'management.user.update', 'uses' => 'ManagementController@userUpdate']);
   Route::get('list_users', ['as' => 'users', 'uses' => 'ManagementController@listUser']);
+  Route::post('list_users', ['as' => 'users', 'uses' => 'ManagementController@listUser']);
 
   Route::get('admin/chkms', ['as' => 'management.chkm.list', 'uses' => 'ManagementController@chkmList']);
   Route::get('admin/chkms/{chkm}/edit', ['as' => 'management.chkm.edit', 'uses' => 'ManagementController@chkmEdit']);

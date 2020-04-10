@@ -8,8 +8,6 @@
     <div class="card">
       <div class="card-content">
         <div class="card-body">
-          <!-- datatable start -->
-
           <form method="post" class="form form-horizontal" action="{{route('management.thongkenap.list')}}">
             @csrf
             <div class="row form-group">
@@ -84,32 +82,35 @@
               </div>
             </div>
           </div>
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>Ngày nạp</th>
-                  <th>Số xu trong game</th>
-                  <th>%KM</th>
-                  <th>Loại thẻ</th>
-                  <th>Giá trị</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach($cardChargeLogs as $log)
-                <tr>
-                  <td>{{$log->id}}</td>
-                  <td>{{$log->dateUpdate}}</td>
-                  <td>{{$log->realValue}}</td>
-                  <td>{{$log->khuyenmai}}</td>
-                  <td>{{$log->cardType}}</td>
-                  <td>{{$log->value}}</td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
-          </div>
+          <!-- datatable start -->
+          <section id="file-export">
+            <div class="card-body card-dashboard">
+              <table class="table table-striped table-bordered file-export">
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>Ngày nạp</th>
+                    <th>Số xu trong game</th>
+                    <th>%KM</th>
+                    <th>Loại thẻ</th>
+                    <th>Giá trị</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($cardChargeLogs as $log)
+                  <tr>
+                    <td>{{$log->id}}</td>
+                    <td>{{$log->dateUpdate}}</td>
+                    <td>{{$log->realValue}}</td>
+                    <td>{{$log->khuyenmai}}</td>
+                    <td>{{$log->cardType}}</td>
+                    <td>{{$log->value}}</td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+          </section>
           <!-- datatable ends -->
         </div>
       </div>

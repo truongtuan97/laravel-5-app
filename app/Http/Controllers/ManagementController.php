@@ -30,8 +30,9 @@ class ManagementController extends Controller
     }
 
     public function listUser() {
-        $users = AccountInfo::all();
-        return view('admin.list_user', compact('users'));
+        $accountName = request('accountName');
+        $users = AccountInfo::whereRaw("cAccName like ?", ["%".request('accountName')."%"])->get();
+        return view('admin.list_user', compact(['users', 'accountName']));
     }
 
     public function userDetail($cAccName) {
@@ -70,16 +71,19 @@ class ManagementController extends Controller
             $user->plainpassword2 = request('password2');
             $user->cSecPassWord = strtoupper(md5(request('password2')));
         }        
-        
-        $user->save();
+        try {
+            $user->save();
 
-        $accInfoLog = new AccountInfoLog();
-        $accInfoLog->adminAccount = $admin->cAccName;
-        $accInfoLog->userAccount = $user->cAccName;
-        $accInfoLog->dateUpdate = Carbon::Now();
-        $accInfoLog->save();
+            $accInfoLog = new AccountInfoLog();
+            $accInfoLog->adminAccount = $admin->cAccName;
+            $accInfoLog->userAccount = $user->cAccName;
+            $accInfoLog->dateUpdate = Carbon::Now();
+            $accInfoLog->save();
 
-        return redirect('list_users');
+            return redirect()->back()->with('alert', 'success');
+        } catch (Exception $e) {
+            return redirect()->back()->with('alert', 'failed');
+        }        
     }
 
     public function chkmList() {
@@ -216,8 +220,7 @@ class ManagementController extends Controller
                 "(dateUpdate >= ? AND dateUpdate <= ?)",
                 [request('fromDate')." 00:00:00", request('toDate')." 23:59:59"]
               )->get();
-        }
-        // $accountInfoLogs = AccountInfoLog::all();
+        }        
         return view('admin.logquanlytaikhoan', compact(['accountInfoLogs', 'fromDate', 'toDate']));
     }
 
@@ -228,10 +231,10 @@ class ManagementController extends Controller
         $fromDate = request('fromDate');
         $toDate = request('toDate');
         $accountName = request('accountName');
-        
+                
         $userMoneyTakenLogs = $accMoneyTracking->whereRaw(
-            "(AccountName like '%?%' AND dateUpdate >= ? AND dateUpdate <= ?)",
-            [request('accountName'), request('fromDate')." 00:00:00", request('toDate')." 23:59:59"]
+            "((dateUpdate >= ? AND dateUpdate <= ?) AND (AccountName like ? ))",
+            [request('fromDate')." 00:00:00", request('toDate')." 23:59:59", "%".request('accountName')."%"]
           )->get();
 
         return view('admin.lichsuruttien', compact([ 'userMoneyTakenLogs', 'fromDate', 'toDate', 'accountName' ]));

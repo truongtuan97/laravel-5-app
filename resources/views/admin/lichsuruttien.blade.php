@@ -13,14 +13,13 @@
             <div class="row form-group">
               <div class="col-md-3">
                 <div class="row">
-
                   <div class="col-md-5">
                     <label for="accountName" class="col-form-label text-md-right">{{ __('Tài khoản') }}</label>
                   </div>
                   <div class="col-md-6">
                     <input id="accountName" type="text"
-                      class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="accountName"
-                      value="{{ old('accountName') }}" required autofocus />
+                      class="form-control{{ $errors->has('accountName') ? ' is-invalid' : '' }}" name="accountName"
+                      value="{{ $accountName }}" required autofocus />
                   </div>
 
                 </div>
