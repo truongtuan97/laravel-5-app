@@ -88,7 +88,9 @@
               <table class="table table-striped table-bordered file-export">
                 <thead>
                   <tr>
-                    <th>id</th>
+                    <th>Id</th>
+                    <th>Tài khoản admin</th>
+                    <th>Tài khoản user</th>
                     <th>Ngày nạp</th>
                     <th>Số xu trong game</th>
                     <th>%KM</th>
@@ -100,6 +102,8 @@
                   @foreach($cardChargeLogs as $log)
                   <tr>
                     <td>{{$log->id}}</td>
+                    <td>{{$log->adminAccount}}</td>
+                    <td>{{$log->userAccount}}</td>
                     <td>{{$log->dateUpdate}}</td>
                     <td>{{$log->realValue}}</td>
                     <td>{{$log->khuyenmai}}</td>

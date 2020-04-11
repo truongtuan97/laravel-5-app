@@ -31,7 +31,11 @@ class ManagementController extends Controller
 
     public function listUser() {
         $accountName = request('accountName');
-        $users = AccountInfo::whereRaw("cAccName like ?", ["%".request('accountName')."%"])->get();
+        if (request('accountName')) {            
+            $users = AccountInfo::whereRaw("cAccName like ?", ["%".request('accountName')."%"])->get();            
+        } else {
+            $users = [];
+        }
         return view('admin.list_user', compact(['users', 'accountName']));
     }
 
@@ -148,7 +152,7 @@ class ManagementController extends Controller
             $user->nExtPoint1 += $realValue;
             $user->save();
            
-            $khuyenmai = ((($realValue-$value) / $value) / 100)."%";
+            $khuyenmai = ((($realValue - $value) / $value) / 100)."%";
 
             $cardChargeLog = new CardChargeInfoLog;
             $cardChargeLog->adminAccount = $admin->cAccName;
@@ -203,10 +207,7 @@ class ManagementController extends Controller
                 "(dateUpdate >= ? AND dateUpdate <= ?)",
                 [request('fromDate')." 00:00:00", request('toDate')." 23:59:59"]
               )->orderBy('cardType')->get();
-        } 
-        // else {
-        //     $cardChargeLogs = CardChargeInfoLog::all();
-        // }
+        }         
         return view('admin.lognaptien', compact(['cardChargeLogs', 'fromDate', 'toDate']));
     }
 
