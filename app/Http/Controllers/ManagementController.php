@@ -152,7 +152,7 @@ class ManagementController extends Controller
             $user->nExtPoint1 += $realValue;
             $user->save();
            
-            $khuyenmai = ((($realValue - $value) / $value) / 100)."%";
+            $khuyenmai =  (((realvalue - value) / value) * 100)."%";
 
             $cardChargeLog = new CardChargeInfoLog;
             $cardChargeLog->adminAccount = $admin->cAccName;
