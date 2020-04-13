@@ -159,7 +159,7 @@ class ManagementController extends Controller
             $cardChargeLog->userAccount = $user->cAccName;
             $cardChargeLog->cardType = $cardType;
             $cardChargeLog->value = $value;
-            $cardChargeLog->realValue = $value;
+            $cardChargeLog->realValue = $realValue;
             $cardChargeLog->khuyenmai = $khuyenmai;
             $cardChargeLog->dateUpdate = Carbon::Now();
             $cardChargeLog->save();
