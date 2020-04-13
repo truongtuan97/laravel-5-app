@@ -210,7 +210,7 @@ class CustomerUserController extends Controller
 
     private function displayPhone($phone) {
         $str1 = substr($phone, 0, 3);
-        $str2 = substr($phone, 6, 3);
+        $str2 = substr($phone, -3);
         $phone = $str1.'****'.$str2;
         return $phone;
     }
